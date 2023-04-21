@@ -1,25 +1,28 @@
 import { useState } from 'react';
+import LinkTo from './LinkTo';
 import Collapse from './icons/Collapse';
 import Menu from './icons/Menu';
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
+
+	const links = NAV_LINKS.map(link => (
+		<li key={link.id}>
+			<LinkTo
+				to={link.linkTo}
+				active='text-orange-600'
+				replace
+				className='transition-all hover:text-orange-600'
+			>
+				{link.name}
+			</LinkTo>
+		</li>
+	));
+
 	return (
 		<nav className='flex items-center justify-between border-b border-b-stone-500 p-6 font-roboto'>
 			<div className='text-2xl'>MyRecipes</div>
-			<ul className='hidden gap-6 sm:flex'>
-				<li>
-					<a href=''>HOME</a>
-				</li>
-				<li>
-					<a href=''>RECIPES</a>
-				</li>
-				<li>
-					<a href=''>CONTACT</a>
-				</li>
-			</ul>
+			<ul className='hidden gap-6 sm:flex'>{links}</ul>
 			<div className='hidden text-white sm:block'>
 				<a href='' className='bg-neutral-900 px-6 py-2'>
 					SINGUP
@@ -35,15 +38,7 @@ const Navbar = (props: Props) => {
 						toggle ? 'visible w-[180px] opacity-100' : 'invisible w-0 opacity-0'
 					}`}
 				>
-					<li>
-						<a href=''>HOME</a>
-					</li>
-					<li>
-						<a href=''>RECIPES</a>
-					</li>
-					<li>
-						<a href=''>CONTACT</a>
-					</li>
+					{links}
 					<li>
 						<div className='text-white'>
 							<a href='' className='bg-neutral-900 px-6 py-2'>
@@ -56,5 +51,11 @@ const Navbar = (props: Props) => {
 		</nav>
 	);
 };
+
+const NAV_LINKS = [
+	{ id: 1, name: 'HOME', linkTo: '/' },
+	{ id: 2, name: 'RECIPES', linkTo: 'recipes' },
+	{ id: 3, name: 'CONTACT', linkTo: 'contact' }
+];
 
 export default Navbar;
