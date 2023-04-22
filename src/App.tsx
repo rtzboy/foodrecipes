@@ -1,18 +1,46 @@
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { drinks, meals, salads } from './assets/categories/filesCate';
 import { DrinksImg, FoodsImg, SaladsImg } from './assets/fontsImg/filesFontImg';
 import LinkTo from './components/LinkTo';
+import { randomRecipeCall } from './lib/api/recipe_api';
+import { useInitialRecipeContext } from './lib/contexts/InitialRecipeContext';
+import { InitialRecipe } from './types/recipeTypes';
 
 const App = () => {
+	const { randomRecipe, setRandomRecipe } = useInitialRecipeContext();
+
+	useEffect(() => {
+		if (randomRecipe) return;
+		recipeOfTheDay(setRandomRecipe);
+	}, []);
+
 	return (
 		<main className='border-b border-b-neutral-500 lg:grid lg:grid-cols-[2fr,1fr]'>
 			<aside className='border-b border-neutral-500 px-6 py-6 lg:row-span-2 lg:border-b-0 lg:border-r lg:py-0'>
-				<div className='py-6 font-salsa text-5xl leading-tight sm:text-[80px]'>
+				<div className='py-6 font-salsa text-[65px] leading-tight sm:text-[80px]'>
 					<p className='font-bold tracking-wider text-orange-600'>FOOD</p>
 					<p className='tracking-wider'>RECIPES</p>
 				</div>
-				<div className='flex flex-col items-center gap-8 sm:flex-row sm:items-stretch sm:justify-center'>
-					<p className='h-64 w-64 border border-black'></p>
-					<p className='h-80 w-64 border border-black'></p>
+				<div className='mt-12 flex flex-col items-center gap-12 sm:flex-row sm:items-stretch sm:justify-evenly sm:gap-8'>
+					<div className='relative h-64 w-64 rounded-full border border-black'>
+						<div className='absolute -left-[28px] -top-[26px] -z-10 h-[310px] w-[310px] rounded-full border border-black' />
+						<div className='absolute -left-[98px] -top-[26px] -z-10 hidden h-[310px] w-[310px] rounded-full border border-black sm:block ' />
+						<div className='absolute -top-[26px] left-[48px] -z-10 hidden h-[310px] w-[310px] rounded-full border border-black sm:block ' />
+						{randomRecipe && <img src={randomRecipe.image} alt='' className='rounded-full' />}
+					</div>
+					<div className='relative h-[350px] w-64 border border-black bg-white p-6 font-sofia'>
+						<div className='absolute left-2 top-2 -z-10 h-[350px] w-64 bg-black' />
+						<p className='font-bold'>{randomRecipe && randomRecipe.label}</p>
+						<ul className='list-disc text-[15px]'>
+							{randomRecipe &&
+								randomRecipe.ingredientLines.slice(0, 6).map((mix, idx) => (
+									<li key={idx} className='ml-4 py-[8px]'>
+										{[...mix].slice(0, 23).join('')}...
+									</li>
+								))}
+							<li className='ml-4 list-none py-1 text-base text-orange-600 underline'>Read More</li>
+						</ul>
+					</div>
 				</div>
 			</aside>
 			<section className='border-b border-b-stone-500 bg-purple-200 p-10'>
@@ -72,11 +100,18 @@ const App = () => {
 	);
 };
 
+const recipeOfTheDay = async (
+	setRandomRecipe: Dispatch<SetStateAction<InitialRecipe | undefined>>
+) => {
+	const { success, message, recipeDay } = await randomRecipeCall();
+	if (success) return setRandomRecipe(recipeDay);
+	console.log(message);
+};
+
 const LIST_RECIPE = [
 	{ id: 1, name: 'Steaks', link: '/' },
 	{ id: 2, name: 'Soups', link: '/' },
 	{ id: 3, name: 'Fish', link: '/' },
 	{ id: 4, name: 'Healthy', link: '/' }
 ];
-
 export default App;

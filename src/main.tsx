@@ -16,7 +16,6 @@ const router = createBrowserRouter([
 				path: 'recipes',
 				element: <div>Recipes</div>
 			},
-
 			{
 				index: true,
 				element: <App />
