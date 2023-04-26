@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { drinks, meals, salads } from './assets/categories/filesCate';
+import drinks from './assets/drinks.jpg';
 import { DrinksImg, FoodsImg, SaladsImg } from './assets/fontsImg/filesFontImg';
+import meals from './assets/meals.jpg';
+import salads from './assets/salads.jpg';
 import LinkTo from './components/LinkTo';
 import { randomRecipeCall } from './lib/api/recipe_api';
 import { useInitialRecipeContext } from './lib/contexts/InitialRecipeContext';
@@ -30,12 +32,12 @@ const App = () => {
 					</div>
 					<div className='relative h-[350px] w-64 border border-black bg-white p-6 font-sofia'>
 						<div className='absolute left-2 top-2 -z-10 h-[350px] w-64 bg-black' />
-						<p className='font-bold'>{randomRecipe && randomRecipe.label}</p>
+						<p className='font-bold'>{randomRecipe && randomRecipe.label.slice(0, 40)}...</p>
 						<ul className='list-disc text-[15px]'>
 							{randomRecipe &&
 								randomRecipe.ingredientLines.slice(0, 6).map((mix, idx) => (
 									<li key={idx} className='ml-4 py-[8px]'>
-										{[...mix].slice(0, 23).join('')}...
+										{mix.slice(0, 25)}...
 									</li>
 								))}
 							<li className='ml-4 list-none py-1 text-base text-orange-600 underline'>Read More</li>
@@ -59,17 +61,17 @@ const App = () => {
 					<div className='flex flex-col gap-4 lg:items-end'>
 						<img
 							src={salads}
-							alt=''
+							alt='salads'
 							className='h-24 w-[220px] border-2 border-neutral-500 object-cover'
 						/>
 						<img
 							src={drinks}
-							alt=''
+							alt='drinks'
 							className='h-24 w-[220px] border-2 border-neutral-500 object-cover'
 						/>
 						<img
 							src={meals}
-							alt=''
+							alt='meals'
 							className='h-24 w-[220px] border-2 border-neutral-500 object-cover'
 						/>
 					</div>
@@ -83,7 +85,10 @@ const App = () => {
 								key={typeFood.id}
 								className='rounded-3xl border border-stone-500 text-center transition-all hover:border-orange-600 hover:text-orange-600'
 							>
-								<LinkTo to={typeFood.link} className='block w-full py-3'>
+								<LinkTo
+									to={`${typeFood.link}/${typeFood.name.toLocaleLowerCase()}`}
+									className='block w-full py-3'
+								>
 									{typeFood.name}
 								</LinkTo>
 							</li>
@@ -109,9 +114,9 @@ const recipeOfTheDay = async (
 };
 
 const LIST_RECIPE = [
-	{ id: 1, name: 'Steaks', link: '/' },
-	{ id: 2, name: 'Soups', link: '/' },
-	{ id: 3, name: 'Fish', link: '/' },
-	{ id: 4, name: 'Healthy', link: '/' }
+	{ id: 1, name: 'Salads', link: '/categories' },
+	{ id: 2, name: 'Soups', link: '/categories' },
+	{ id: 3, name: 'Fish', link: '/categories' },
+	{ id: 4, name: 'Healthy', link: '/categories' }
 ];
 export default App;

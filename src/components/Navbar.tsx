@@ -11,7 +11,6 @@ const Navbar = () => {
 			<LinkTo
 				to={link.linkTo}
 				active='text-orange-600'
-				replace
 				className='transition-all hover:text-orange-600'
 			>
 				{link.name}
@@ -29,7 +28,7 @@ const Navbar = () => {
 				</a>
 			</div>
 			{/* mobile */}
-			<div className='relative flex h-9 items-center justify-center sm:hidden'>
+			<div className='relative z-50 flex h-9 items-center justify-center sm:hidden'>
 				<span onClick={() => setToggle(!toggle)} className={`cursor-pointer transition-all`}>
 					<span>{toggle ? <Collapse className='h-8' /> : <Menu />}</span>
 				</span>
@@ -54,8 +53,9 @@ const Navbar = () => {
 
 const NAV_LINKS = [
 	{ id: 1, name: 'HOME', linkTo: '/' },
-	{ id: 2, name: 'RECIPES', linkTo: 'recipes' },
-	{ id: 3, name: 'CONTACT', linkTo: 'contact' }
+	{ id: 2, name: 'CATEGORIES', linkTo: 'categories' },
+	{ id: 3, name: 'RECIPES', linkTo: 'recipes' },
+	{ id: 4, name: 'CONTACT', linkTo: 'contact' }
 ];
 
 export default Navbar;
