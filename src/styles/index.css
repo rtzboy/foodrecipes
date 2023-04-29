@@ -6,12 +6,30 @@
 @tailwind utilities;
 
 body {
-	@apply bg-[#E2D1BF];
+	/* @apply bg-[#E2D1BF];
 	background: radial-gradient(
 		circle,
 		rgba(241, 238, 233, 0.7) 0%,
 		rgba(241, 238, 233, 0.1) 25%,
 		rgba(241, 238, 233, 0.2) 50%,
 		rgba(241, 238, 233, 0.8) 76%
-	);
+	); */
+	@apply w-screen;
+	@apply overflow-x-hidden;
+}
+
+*::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+	@apply bg-transparent;
+	@apply rounded-xl;
+}
+
+*::-webkit-scrollbar-thumb {
+	@apply bg-neutral-500;
+	@apply rounded-xl;
+	@apply border-4 border-neutral-700;
 }

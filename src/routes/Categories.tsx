@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { cookiesIcon, saladsIcon } from '../assets/iconsImg/filesIconsImg';
-import CategoryList from './CategoryList';
-import LinkTo from './LinkTo';
+import CategoryList from '../components/CategoryList';
+import LinkTo from '../components/LinkTo';
+import { CATEGORIES_ICON } from '../constants/categories';
 
 const Categories = () => {
 	const { idCateg } = useParams();
@@ -42,10 +42,5 @@ const Categories = () => {
 		</div>
 	);
 };
-
-const CATEGORIES_ICON = [
-	{ id: 'cookies', name: 'Cookies', url: cookiesIcon },
-	{ id: 'salads', name: 'Salads', url: saladsIcon }
-];
 
 export default Categories;

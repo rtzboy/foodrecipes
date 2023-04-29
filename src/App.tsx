@@ -40,7 +40,9 @@ const App = () => {
 										{mix.slice(0, 25)}...
 									</li>
 								))}
-							<li className='ml-4 list-none py-1 text-base text-orange-600 underline'>Read More</li>
+							<li className='ml-4 list-none py-1 text-base text-orange-600 underline'>
+								<LinkTo to={`/recipes`}>Read More</LinkTo>
+							</li>
 						</ul>
 					</div>
 				</div>
