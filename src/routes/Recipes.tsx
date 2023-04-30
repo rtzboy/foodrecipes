@@ -5,9 +5,7 @@ import { foodRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
 import { useFoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
 import { RecipeType } from '../types/recipeTypes';
 
-type Props = {};
-
-const Recipes = (props: Props) => {
+const Recipes = () => {
 	const { foodRecipes, setFoodRecipes } = useFoodRecipeContext();
 	const { idRecipe } = useParams();
 

@@ -1,6 +1,6 @@
 const Footer = () => {
 	return (
-		<footer className='mt-6 flex justify-center'>
+		<footer className='mt-auto flex justify-center'>
 			<div className='flex flex-col items-center gap-2'>
 				<div id='edamam-badge' data-color='white' className='bg-transparent'></div>
 			</div>
