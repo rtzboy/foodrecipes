@@ -42,7 +42,13 @@ const Recipes = (props: Props) => {
 			<div className='text-center'>
 				<button
 					disabled={!foodRecipes?.next}
-					onClick={() => nextPageRecipe(setFoodRecipes, foodRecipes?.next)}
+					onClick={() => {
+						nextPageRecipe(setFoodRecipes, foodRecipes?.next);
+						window.scrollTo({
+							top: 0,
+							behavior: 'smooth'
+						});
+					}}
 					className='rounded-xl bg-slate-200 px-4 py-1 disabled:opacity-50'
 				>
 					NextPage

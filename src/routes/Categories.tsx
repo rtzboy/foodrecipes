@@ -7,25 +7,21 @@ const Categories = () => {
 	const { idCateg } = useParams();
 
 	return (
-		<div className='px-12 py-6'>
+		<div className='p-3'>
 			<div className='relative mb-6 max-w-6xl overflow-hidden'>
 				<div className='flex flex-nowrap overflow-x-auto scroll-smooth'>
-					<ul className='flex gap-6 py-3'>
+					<ul className='flex gap-3 py-3'>
+						{/* TODO: Think about "All" category, might be remove? */}
 						{CATEGORIES_ICON.map(icon => (
 							<li
 								key={icon.id}
-								className='relative h-32 w-32 cursor-pointer border border-neutral-500 bg-white'
+								className={`relative h-24 w-24 cursor-pointer rounded-3xl border-2 transition-all duration-500 sm:h-32 sm:w-32 ${
+									icon.id === idCateg ? 'border-green-500 bg-green-50' : 'border-gray-300'
+								}`}
 							>
-								<LinkTo to={icon.id} className='flex h-full w-full flex-col justify-evenly p-4'>
+								<LinkTo to={icon.id} className='flex h-full w-full flex-col justify-evenly sm:p-4'>
 									<img src={icon.url} alt={icon.name} className='mx-auto block w-10' />
 									<div className='text-center'>{icon.name}</div>
-									<div
-										className={`absolute left-[6px] top-[6px] -z-10 h-32 w-32 border border-neutral-500 transition-all duration-500 ${
-											icon.id === idCateg
-												? 'visible bg-neutral-500 opacity-100'
-												: 'invisible opacity-0'
-										}`}
-									></div>
 								</LinkTo>
 							</li>
 						))}
@@ -35,7 +31,7 @@ const Categories = () => {
 				<button className='absolute'>&#8250;</button>
 			</div>
 			<div>
-				<ul className='flex flex-wrap gap-12 font-sofia text-lg'>
+				<ul className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] sm:gap-3 md:gap-6'>
 					<CategoryList active={idCateg} />
 				</ul>
 			</div>

@@ -1,4 +1,10 @@
-import { COOKIES_LIST, INITIAL_CATE_SHOW, SALADS_LIST } from '../constants/categories';
+import {
+	COOKIES_LIST,
+	INITIAL_CATE_SHOW,
+	SALADS_LIST,
+	SEA_LIST,
+	SOUPS_LIST
+} from '../constants/categories';
 import LinkTo from './LinkTo';
 
 type CategoryListProps = {
@@ -12,6 +18,10 @@ const CategoryList = ({ active }: CategoryListProps) => {
 				return COOKIES_LIST;
 			case 'salads':
 				return SALADS_LIST;
+			case 'soups':
+				return SOUPS_LIST;
+			case 'seas':
+				return SEA_LIST;
 			default:
 				return INITIAL_CATE_SHOW;
 		}
@@ -20,17 +30,14 @@ const CategoryList = ({ active }: CategoryListProps) => {
 	return (
 		<>
 			{typeCategoryList().map(category => (
-				<li
-					key={category.id}
-					className='flex h-[220px] w-[240px] cursor-pointer flex-col justify-between border border-neutral-500'
-				>
+				<li key={category.id} className='mb-3 cursor-pointer'>
 					<LinkTo to={`/recipes/${category.name}`}>
 						<img
 							src={category.url}
 							alt={category.name}
-							className='h-[180px] w-[240px] object-cover'
+							className='mb-2 h-[180px] w-[250px] rounded-2xl object-cover sm:h-[210px]'
 						/>
-						<div>{category.name}</div>
+						<div className='font-roboto text-[17px]'>{category.name}</div>
 					</LinkTo>
 				</li>
 			))}
