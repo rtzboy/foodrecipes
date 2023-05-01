@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { childCateg } from '../constants/motionAnimations';
 import LinkTo from './LinkTo';
 
 type CategoryListProps = {
@@ -12,11 +13,10 @@ const CategoryList = ({ id, name, url }: CategoryListProps) => {
 		<motion.li
 			layout
 			exit={{
-				scale: 0.8,
-				opacity: 0,
-				transition: { duration: 0.4 }
+				height: 0,
+				transition: { duration: 0.5 }
 			}}
-			variants={varChildren}
+			variants={childCateg()}
 			className='mb-3 cursor-pointer'
 		>
 			<LinkTo to={`/recipes/${name}`}>
@@ -29,11 +29,6 @@ const CategoryList = ({ id, name, url }: CategoryListProps) => {
 			</LinkTo>
 		</motion.li>
 	);
-};
-
-const varChildren = {
-	hidden: { scale: 0.8, opacity: 0 },
-	visible: { scale: 1, opacity: 1, transition: { type: 'spring' } }
 };
 
 export default CategoryList;

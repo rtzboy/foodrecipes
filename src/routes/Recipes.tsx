@@ -10,11 +10,6 @@ const Recipes = () => {
 	const { idRecipe } = useParams();
 
 	useEffect(() => {
-		if (foodRecipes) return;
-		recipeCall(setFoodRecipes);
-	}, []);
-
-	useEffect(() => {
 		if (idRecipe === undefined) return;
 		recipeCall(setFoodRecipes, idRecipe);
 	}, [idRecipe]);
@@ -22,6 +17,7 @@ const Recipes = () => {
 	return (
 		<div className='p-3 sm:p-6'>
 			<InputSearch className='mb-6 w-full sm:max-w-xs' />
+
 			<div className='mb-6'>
 				<ul className='grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'>
 					{foodRecipes?.recipe.map(recipe => (

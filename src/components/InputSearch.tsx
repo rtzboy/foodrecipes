@@ -21,7 +21,7 @@ const InputSearch = ({ className }: InputSearchProps) => {
 				onChange={evt => setSearchFood(evt.target.value)}
 				placeholder='Hungry?'
 			/>
-			<div className='relative flex w-12 items-center justify-center'>
+			<div className='relative flex w-12 items-center justify-center bg-orange-50'>
 				<button
 					disabled={!searchFood}
 					onClick={evt => searchRecipe(setFoodRecipes, searchFood)}
