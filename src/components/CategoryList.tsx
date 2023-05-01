@@ -1,48 +1,39 @@
-import {
-	COOKIES_LIST,
-	INITIAL_CATE_SHOW,
-	SALADS_LIST,
-	SEA_LIST,
-	SOUPS_LIST
-} from '../constants/categories';
+import { motion } from 'framer-motion';
 import LinkTo from './LinkTo';
 
 type CategoryListProps = {
-	active?: string;
+	id: number;
+	name: string;
+	url: string;
 };
 
-const CategoryList = ({ active }: CategoryListProps) => {
-	const typeCategoryList = () => {
-		switch (active) {
-			case 'cookies':
-				return COOKIES_LIST;
-			case 'salads':
-				return SALADS_LIST;
-			case 'soups':
-				return SOUPS_LIST;
-			case 'seas':
-				return SEA_LIST;
-			default:
-				return INITIAL_CATE_SHOW;
-		}
-	};
-
+const CategoryList = ({ id, name, url }: CategoryListProps) => {
 	return (
-		<>
-			{typeCategoryList().map(category => (
-				<li key={category.id} className='mb-3 cursor-pointer'>
-					<LinkTo to={`/recipes/${category.name}`}>
-						<img
-							src={category.url}
-							alt={category.name}
-							className='mb-2 h-[180px] w-[250px] rounded-2xl object-cover sm:h-[210px]'
-						/>
-						<div className='font-roboto text-[17px]'>{category.name}</div>
-					</LinkTo>
-				</li>
-			))}
-		</>
+		<motion.li
+			layout
+			exit={{
+				scale: 0.8,
+				opacity: 0,
+				transition: { duration: 0.4 }
+			}}
+			variants={varChildren}
+			className='mb-3 cursor-pointer'
+		>
+			<LinkTo to={`/recipes/${name}`}>
+				<img
+					src={url}
+					alt={name}
+					className='mb-2 h-[180px] w-[250px] rounded-2xl object-cover sm:h-[210px]'
+				/>
+				<div className='font-roboto text-[17px]'>{name}</div>
+			</LinkTo>
+		</motion.li>
 	);
+};
+
+const varChildren = {
+	hidden: { scale: 0.8, opacity: 0 },
+	visible: { scale: 1, opacity: 1, transition: { type: 'spring' } }
 };
 
 export default CategoryList;

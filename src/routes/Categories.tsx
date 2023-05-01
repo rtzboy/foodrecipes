@@ -1,11 +1,20 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import CategoryList from '../components/CategoryList';
 import LinkTo from '../components/LinkTo';
-import { CATEGORIES_ICON } from '../constants/categories';
+import {
+	CATEGORIES_ICON,
+	COOKIES_LIST,
+	INITIAL_CATE_SHOW,
+	SALADS_LIST,
+	SEA_LIST,
+	SOUPS_LIST
+} from '../constants/categories';
 
 const Categories = () => {
 	const { idCateg } = useParams();
 
+	// TODO: change url search by state search
 	return (
 		<div className='p-3'>
 			<div className='relative mb-6 max-w-6xl overflow-hidden'>
@@ -30,13 +39,50 @@ const Categories = () => {
 				<button className='absolute'>&#8249;</button>
 				<button className='absolute'>&#8250;</button>
 			</div>
-			<div>
-				<ul className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] sm:gap-3 md:gap-6'>
-					<CategoryList active={idCateg} />
-				</ul>
-			</div>
+			<motion.ul
+				initial='hidden'
+				animate='visible'
+				layout
+				variants={varFramer}
+				className='grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] justify-items-center gap-2 overflow-hidden sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] sm:gap-3 md:gap-6'
+			>
+				<AnimatePresence>
+					{typeCategoryList(idCateg).map(item => (
+						<CategoryList key={item.id} {...item} />
+					))}
+				</AnimatePresence>
+			</motion.ul>
 		</div>
 	);
+};
+
+const varFramer = {
+	hidden: {
+		transition: {
+			when: 'afterChildren'
+		}
+	},
+	visible: {
+		transition: {
+			when: 'beforeChildren',
+			staggerChildren: 0.1
+		}
+	}
+};
+
+const typeCategoryList = (active?: string) => {
+	switch (active) {
+		case 'cookies':
+			return COOKIES_LIST;
+		case 'salads':
+			return SALADS_LIST;
+		case 'soups':
+			return SOUPS_LIST;
+		case 'seas':
+			return SEA_LIST;
+		default:
+			return INITIAL_CATE_SHOW;
+	}
 };
 
 export default Categories;
