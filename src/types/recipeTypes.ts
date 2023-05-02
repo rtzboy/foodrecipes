@@ -8,7 +8,7 @@ export type RecipeType = {
 	count: number;
 	from: number;
 	to: number;
-	next: string;
+	next: string | undefined;
 	recipe: {
 		id: string;
 		calories: number;

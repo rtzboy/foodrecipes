@@ -10,7 +10,7 @@ const Recipes = () => {
 	const { idRecipe } = useParams();
 
 	useEffect(() => {
-		if (idRecipe === undefined) return;
+		if (!idRecipe) return;
 		recipeCall(setFoodRecipes, idRecipe);
 	}, [idRecipe]);
 

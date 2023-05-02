@@ -40,7 +40,7 @@ export const foodRecipeCall = async (name: string) => {
 				count: data.count,
 				from: data.from,
 				to: data.to,
-				next: data['_links'].next.href,
+				next: data['_links']?.next?.href,
 				recipe: data.hits.map((item: any) => recipeObjectMapper(item.recipe))
 			};
 
