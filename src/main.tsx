@@ -15,14 +15,12 @@ const router = createBrowserRouter([
 		errorElement: <Errorpage />,
 		children: [
 			{
+				index: true,
+				element: <App />
+			},
+			{
 				path: 'categories',
-				element: <Categories />,
-				children: [
-					{
-						path: ':idCateg',
-						element: <div>...</div>
-					}
-				]
+				element: <Categories />
 			},
 			{
 				path: 'recipes',
@@ -33,10 +31,6 @@ const router = createBrowserRouter([
 						element: <div>...</div>
 					}
 				]
-			},
-			{
-				index: true,
-				element: <App />
 			}
 		]
 	}

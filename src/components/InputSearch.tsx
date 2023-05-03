@@ -17,7 +17,7 @@ const InputSearch = ({ className }: InputSearchProps) => {
 			<input
 				type='text'
 				value={searchFood}
-				className='block h-full w-full px-4 py-2 outline-none'
+				className='block h-full w-full px-4 py-3 outline-none'
 				onChange={evt => setSearchFood(evt.target.value)}
 				placeholder='Hungry?'
 			/>

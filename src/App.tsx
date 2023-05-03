@@ -1,3 +1,4 @@
+import xdddd from '../src/assets/whoweare.jpg';
 import { drinks, healthy, lunch, shrimp } from './assets/popular/popularFiles';
 import DynamicBg from './components/DynamicBg';
 import LinkTo from './components/LinkTo';
@@ -5,12 +6,21 @@ import WordLoop from './components/WordLoop';
 import Arrow from './components/icons/Arrow';
 import Fork from './components/icons/Fork';
 
+// TODO: move to another file?
 const word_list = ['Fried', 'Baked', 'Steamed', 'Boiled'];
+
 const bgList = [
 	'/src/assets/bgFood.jpg',
 	'/src/assets/bgFoodTwo.jpg',
 	'/src/assets/bgFoodThree.jpg',
 	'/src/assets/bgFoodFour.jpg'
+];
+
+const POP_CATEGORIES = [
+	{ id: 1, url: drinks },
+	{ id: 2, url: healthy },
+	{ id: 3, url: lunch },
+	{ id: 4, url: shrimp }
 ];
 
 const App = () => {
@@ -37,6 +47,27 @@ const App = () => {
 							<Fork className='h-6' />
 						</button>
 					</LinkTo>
+				</div>
+			</section>
+			<section className='py-20'>
+				<div className='mx-auto flex w-full max-w-7xl flex-col gap-6 px-4'>
+					<div className='grid gap-8 md:grid-cols-2'>
+						<div className='flex flex-col gap-8'>
+							<h2 className='tracking-wider text-orange-700'>WHO WE ARE</h2>
+							<p className='text-3xl font-semibold md:text-4xl'>
+								Discover our platform to explore and enjoy exceptional recipes
+							</p>
+							<p>
+								Don't know what to cook? Don't worry. Our website also offers you popular
+								categories, including classic dishes, international cuisine, vegetarian options and
+								recipes for special occasions. These categories will inspire you and help you find
+								the perfect recipe for any occasion.
+							</p>
+						</div>
+						<div className='relative flex items-center px-4 py-8'>
+							<img src={xdddd} alt='' className='w-full rounded-xl' />
+						</div>
+					</div>
 				</div>
 			</section>
 			<section className='relative'>
@@ -80,12 +111,5 @@ const App = () => {
 		</main>
 	);
 };
-
-const POP_CATEGORIES = [
-	{ id: 1, url: drinks },
-	{ id: 2, url: healthy },
-	{ id: 3, url: lunch },
-	{ id: 4, url: shrimp }
-];
 
 export default App;

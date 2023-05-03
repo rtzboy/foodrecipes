@@ -6,12 +6,13 @@ import Menu from './icons/Menu';
 const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
 
+	// TODO: Separete links (desktop mobile)
 	const links = NAV_LINKS.map(link => (
-		<li key={link.id}>
+		<li key={link.id} className='w-full text-center'>
 			<LinkTo
 				to={link.linkTo}
-				active='text-orange-600'
-				className='transition-all hover:text-orange-600'
+				active='text-orange-600 bg-orange-500 text-white'
+				className='block w-full py-2 transition-all hover:bg-orange-50 hover:text-orange-600'
 			>
 				{link.name}
 			</LinkTo>
@@ -29,19 +30,19 @@ const Navbar = () => {
 					</a>
 				</div>
 				{/* mobile */}
-				<div className='relative z-50 flex h-9 items-center justify-center sm:hidden'>
+				<div className='relative flex h-9 items-center justify-center sm:hidden'>
 					<span onClick={() => setToggle(!toggle)} className={`cursor-pointer transition-all`}>
 						<span>{toggle ? <Collapse className='h-8' /> : <Menu />}</span>
 					</span>
 					<ul
-						className={`absolute right-0 top-[60px] flex flex-col items-center gap-4 overflow-hidden border border-neutral-500 bg-white py-4 transition-all duration-700 ${
+						className={`fixed right-5 top-[75px] flex flex-col items-center overflow-hidden rounded-xl bg-white transition-all duration-700 ${
 							toggle ? 'visible w-[180px] opacity-100' : 'invisible w-0 opacity-0'
 						}`}
 					>
 						{links}
-						<li>
+						<li className='py-2'>
 							<div className='text-white'>
-								<a href='' className='bg-neutral-900 px-6 py-2'>
+								<a href='' className='rounded-lg bg-neutral-900 px-6 py-1'>
 									SINGUP
 								</a>
 							</div>
@@ -54,10 +55,10 @@ const Navbar = () => {
 };
 
 const NAV_LINKS = [
-	{ id: 1, name: 'HOME', linkTo: '/' },
-	{ id: 2, name: 'CATEGORIES', linkTo: 'categories' },
-	{ id: 3, name: 'RECIPES', linkTo: 'recipes' },
-	{ id: 4, name: 'CONTACT', linkTo: 'contact' }
+	{ id: 1, name: 'Home', linkTo: '/' },
+	{ id: 2, name: 'Categories', linkTo: 'categories' },
+	{ id: 3, name: 'Recipes', linkTo: 'recipes' },
+	{ id: 4, name: 'Contact', linkTo: 'contact' }
 ];
 
 export default Navbar;

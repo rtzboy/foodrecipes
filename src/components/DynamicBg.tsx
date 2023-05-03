@@ -3,15 +3,16 @@ import { useEffect, useState } from 'react';
 
 type DynamicBgProps = {
 	bglist: Array<string>;
+	opacitylvl: number;
 };
 
-const variants = {
+const fnVariants = (opacity: number) => ({
 	hidden: {
 		opacity: 0,
 		scale: 1.2
 	},
 	visible: {
-		opacity: 0.5,
+		opacity,
 		scale: 1,
 		transition: { duration: 2 }
 	},
@@ -20,9 +21,9 @@ const variants = {
 		scale: 1.2,
 		transition: { duration: 2 }
 	}
-};
+});
 
-const DynamicBg = ({ bglist }: DynamicBgProps) => {
+const DynamicBg = ({ bglist, opacitylvl }: DynamicBgProps) => {
 	const [bgIndex, setBgIndex] = useState(0);
 
 	useEffect(() => {
@@ -36,22 +37,20 @@ const DynamicBg = ({ bglist }: DynamicBgProps) => {
 	}, [bgIndex, setBgIndex, bglist.length]);
 
 	return (
-		<div className='h-screen w-full overflow-hidden'>
-			<AnimatePresence mode='wait'>
-				<motion.div
-					key={bgIndex}
-					initial='hidden'
-					animate='visible'
-					exit='exit'
-					variants={variants}
-					transition={{
-						opacity: { duration: 1.5 }
-					}}
-					style={{ backgroundImage: `url(${bglist[bgIndex]})` }}
-					className={`h-screen w-full bg-cover bg-center bg-no-repeat`}
-				/>
-			</AnimatePresence>
-		</div>
+		<AnimatePresence mode='wait'>
+			<motion.div
+				key={bgIndex}
+				initial='hidden'
+				animate='visible'
+				exit='exit'
+				variants={fnVariants(opacitylvl)}
+				transition={{
+					opacity: { duration: 1.5 }
+				}}
+				style={{ backgroundImage: `url(${bglist[bgIndex]})` }}
+				className={`absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat`}
+			/>
+		</AnimatePresence>
 	);
 };
 
