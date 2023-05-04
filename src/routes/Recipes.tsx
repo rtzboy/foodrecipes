@@ -1,17 +1,20 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import DynamicBg from '../components/DynamicBg';
 import InputSearch from '../components/InputSearch';
+import Modal from '../components/Modal';
+import RecipeDetails from '../components/RecipeDetails';
 import Arrow from '../components/icons/Arrow';
 import { foodRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
 import { useFoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
-import { RecipeType } from '../types/recipeTypes';
+import { RecipeDetailsType, RecipeType } from '../types/recipeTypes';
 
 const bgList = ['/src/assets/coverone.png', '/src/assets/covertwo.png'];
 
 const Recipes = () => {
 	const { foodRecipes, setFoodRecipes } = useFoodRecipeContext();
+	const [previewRecipe, setPreviewRecipe] = useState<RecipeDetailsType | undefined>(undefined);
 	const { idRecipe } = useParams();
 
 	useEffect(() => {
@@ -21,6 +24,11 @@ const Recipes = () => {
 
 	return (
 		<section>
+			{previewRecipe && (
+				<Modal onClose={() => setPreviewRecipe(undefined)}>
+					<RecipeDetails details={previewRecipe} />
+				</Modal>
+			)}
 			<section className='relative h-screen w-full overflow-hidden'>
 				<DynamicBg bglist={bgList} opacitylvl={1} />
 				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 px-6'>
@@ -71,6 +79,7 @@ const Recipes = () => {
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
+									onClick={() => setPreviewRecipe(recipe)}
 									className='mb-2 overflow-hidden border-neutral-500'
 								>
 									<img
