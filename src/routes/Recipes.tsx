@@ -5,7 +5,7 @@ import DynamicBg from '../components/DynamicBg';
 import InputSearch from '../components/InputSearch';
 import Modal from '../components/Modal';
 import RecipeDetails from '../components/RecipeDetails';
-import Arrow from '../components/icons/Arrow';
+import ArrowDown from '../components/icons/ArrowDown';
 import { foodRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
 import { useFoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
 import { RecipeDetailsType, RecipeType } from '../types/recipeTypes';
@@ -31,7 +31,7 @@ const Recipes = () => {
 			)}
 			<section className='relative h-screen w-full overflow-hidden'>
 				<DynamicBg bglist={bgList} opacitylvl={1} />
-				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 px-6'>
+				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 px-6'>
 					<h2 className='max-w-2xl text-center text-6xl'>What are your favorite food?</h2>
 					<p className='max-w-3xl text-center text-gray-600'>
 						Whether you're craving a specific cuisine or looking for inspiration, our search feature
@@ -62,15 +62,16 @@ const Recipes = () => {
 								transition={{ duration: 1.7, repeat: Infinity, repeatType: 'loop' }}
 								className='block text-orange-500'
 							>
-								<Arrow className='h-9' />
+								<ArrowDown className='h-9' />
 							</motion.span>
 						</button>
 					)}
+					<h1 className='mt-12 text-4xl'>LATEST RECIPES</h1>
 				</div>
 			</section>
 			<section className='mx-auto max-w-7xl'>
 				<div className='mb-6 px-3'>
-					<ul className='grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'>
+					<ul className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'>
 						<AnimatePresence>
 							{foodRecipes?.recipe.map(recipe => (
 								<motion.li
@@ -80,15 +81,29 @@ const Recipes = () => {
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 									onClick={() => setPreviewRecipe(recipe)}
-									className='mb-2 overflow-hidden border-neutral-500'
+									className='relative rounded-lg p-2'
 								>
 									<img
 										src={recipe.images.large?.url || recipe.images.regular?.url}
 										alt=''
-										className='mb-3 w-[300px] rounded-2xl object-contain'
+										className='mb-3 w-[300px] rounded-2xl object-cover'
 									/>
-									<div className='max-w-[300px] font-roboto'>{recipe.label}</div>
-									<div className='font-salsa text-sm italic text-gray-500'>{recipe.source}</div>
+									<span className='absolute left-4 top-4 block rounded-lg bg-orange-600 px-2 py-1 text-sm text-white'>
+										by {recipe.source}
+									</span>
+									<div className='mb-2 flex flex-wrap'>
+										{recipe.mealType?.map((type, idx) => (
+											<span
+												key={idx}
+												className='inline-block rounded-xl bg-orange-100 px-2 py-[2px] text-sm italic tracking-wide text-gray-700'
+											>
+												{type}
+											</span>
+										))}
+									</div>
+									<div className='max-w-[300px] font-roboto text-lg font-semibold'>
+										{recipe.label}
+									</div>
 								</motion.li>
 							))}
 						</AnimatePresence>
