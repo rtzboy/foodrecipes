@@ -26,7 +26,7 @@ const RecipeDetails = ({ details }: RecipeDetailsProps) => {
 				<h2 className='text-3xl font-bold'>{details.label}</h2>
 				<div>Calories: {details.calories.toFixed(2)}</div>
 				<div>{details.cuisineType.join(' - ')}</div>
-				<div>DishType: {details.dishType.join(' - ')}</div>
+				<div>DishType: {details.dishType?.join(' - ')}</div>
 				<div>
 					<div>
 						<span>Ingredient</span>

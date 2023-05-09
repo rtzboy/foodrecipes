@@ -1,26 +1,27 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Dispatch, useEffect, useState } from 'react';
 import DynamicBg from '../components/DynamicBg';
 import InputSearch from '../components/InputSearch';
 import Modal from '../components/Modal';
 import RecipeDetails from '../components/RecipeDetails';
-import ArrowDown from '../components/icons/ArrowDown';
-import { foodRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
+import LatestBtn from '../components/buttons/LatestBtn';
+import LoadingAnim from '../components/icons/LoadingAnim';
+import NextArrow from '../components/icons/NextArrow';
+import RecipeShow from '../components/recipe/RecipeShow';
+import { RANDOM_TYPE } from '../constants/content';
+import { latestRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
 import { useFoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
-import { RecipeDetailsType, RecipeType } from '../types/recipeTypes';
+import { RecipeDetailsType, RecipeReducerAction } from '../types/recipeTypes';
 
 const bgList = ['/src/assets/coverone.png', '/src/assets/covertwo.png'];
 
 const Recipes = () => {
-	const { foodRecipes, setFoodRecipes } = useFoodRecipeContext();
+	const { foodRecipes, dispatchRecipes } = useFoodRecipeContext();
 	const [previewRecipe, setPreviewRecipe] = useState<RecipeDetailsType | undefined>(undefined);
-	const { idRecipe } = useParams();
 
 	useEffect(() => {
-		if (!idRecipe) return;
-		recipeCall(setFoodRecipes, idRecipe);
-	}, [idRecipe]);
+		if (foodRecipes.recipeList) return;
+		latestRecipes(dispatchRecipes);
+	}, []);
 
 	return (
 		<section>
@@ -48,119 +49,52 @@ const Recipes = () => {
 							<li className='rounded-2xl bg-white px-3 py-1'>#Chicken</li>
 						</ul>
 					</div>
-					{foodRecipes && (
-						<button
-							onClick={() => {
-								window.scrollTo({
-									top: 850,
-									behavior: 'smooth'
-								});
-							}}
-						>
-							<motion.span
-								animate={{ y: [0, 20, 0] }}
-								transition={{ duration: 1.7, repeat: Infinity, repeatType: 'loop' }}
-								className='block text-orange-500'
-							>
-								<ArrowDown className='h-9' />
-							</motion.span>
-						</button>
-					)}
+					<LatestBtn loadStatus={foodRecipes.loading} />
 					<h1 className='mt-12 text-4xl'>LATEST RECIPES</h1>
 				</div>
 			</section>
 			<section className='mx-auto max-w-7xl'>
 				<div className='mb-6 px-3'>
-					<ul className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'>
-						<AnimatePresence>
-							{foodRecipes?.recipe.map(recipe => (
-								<motion.li
-									layout
-									key={recipe.id}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									onClick={() => setPreviewRecipe(recipe)}
-									className='relative rounded-lg p-2'
-								>
-									<img
-										src={recipe.images.large?.url || recipe.images.regular?.url}
-										alt=''
-										className='mb-3 w-[300px] rounded-2xl object-cover'
-									/>
-									<span className='absolute left-4 top-4 block rounded-lg bg-orange-600 px-2 py-1 text-sm text-white'>
-										by {recipe.source}
-									</span>
-									<div className='mb-2 flex flex-wrap'>
-										{recipe.mealType?.map((type, idx) => (
-											<span
-												key={idx}
-												className='inline-block rounded-xl bg-orange-100 px-2 py-[2px] text-sm italic tracking-wide text-gray-700'
-											>
-												{type}
-											</span>
-										))}
-									</div>
-									<div className='max-w-[300px] font-roboto text-lg font-semibold'>
-										{recipe.label}
-									</div>
-								</motion.li>
-							))}
-						</AnimatePresence>
-					</ul>
+					<RecipeShow foodRecipes={foodRecipes} setPreviewRecipe={setPreviewRecipe} />
+				</div>
+				<div className='flex justify-center'>
+					<button
+						disabled={foodRecipes.loading || !foodRecipes.recipeList?.next}
+						onClick={() => nextPageRecipe(dispatchRecipes, foodRecipes.recipeList?.next)}
+						className='flex h-[30px] w-[90px] items-center justify-center rounded-xl bg-orange-200 disabled:opacity-50'
+					>
+						{foodRecipes.loading ? (
+							<span>
+								<LoadingAnim className='h-5' />
+							</span>
+						) : (
+							<span>
+								<NextArrow className='h-6' />
+							</span>
+						)}
+					</button>
+				</div>
+				<div className='px-4 text-xs italic text-slate-400'>
+					{foodRecipes.recipeList?.to}/{foodRecipes.recipeList?.count}
 				</div>
 			</section>
-			<div>
-				<div className='mx-auto max-w-7xl p-3 sm:p-6'>
-					<div className='text-center'>
-						<button
-							disabled={!foodRecipes?.next}
-							onClick={() => {
-								nextPageRecipe(setFoodRecipes, foodRecipes?.next);
-								setTimeout(() => {
-									window.scrollTo({
-										top: 800,
-										behavior: 'smooth'
-									});
-								}, 1000);
-							}}
-							className='rounded-xl bg-slate-200 px-4 py-1 disabled:opacity-50'
-						>
-							NextPage
-						</button>
-					</div>
-					<div className='text-xs italic text-slate-500'>
-						{foodRecipes?.to}/{foodRecipes?.count}
-					</div>
-				</div>
-			</div>
 		</section>
 	);
 };
 
-const recipeCall = async (
-	setFoodRecipes: Dispatch<SetStateAction<RecipeType | undefined>>,
-	idRecipe?: string
-) => {
-	// TODO: change "steak" to something client needs
-	const { message, success, filterRecipes } = await foodRecipeCall(idRecipe || 'steak');
-	if (success) {
-		setFoodRecipes(filterRecipes);
-	} else {
-		console.log(message);
-	}
+const latestRecipes = async (dispatchRecipes: Dispatch<RecipeReducerAction>) => {
+	const { message, success, filterRecipes } = await latestRecipeCall(
+		RANDOM_TYPE[Math.floor(Math.random() * (11 - 0 - 1) + 0)]
+	);
+	if (success) return dispatchRecipes({ type: 'RECIPE_FOUND', payload: filterRecipes });
+	dispatchRecipes({ type: 'RECIPE_ERROR', payload: message });
 };
 
-const nextPageRecipe = async (
-	setFoodRecipes: Dispatch<SetStateAction<RecipeType | undefined>>,
-	url?: string
-) => {
+const nextPageRecipe = async (dispatchRecipes: Dispatch<RecipeReducerAction>, url?: string) => {
+	dispatchRecipes({ type: 'RECIPE_SEARCHING' });
 	const { message, success, filterRecipes } = await nextRecipeCall(url || 'https');
-	if (success) {
-		setFoodRecipes(filterRecipes);
-	} else {
-		console.log(message);
-	}
+	if (success) return dispatchRecipes({ type: 'RECIPE_FOUND', payload: filterRecipes });
+	dispatchRecipes({ type: 'RECIPE_ERROR', payload: message });
 };
 
 export default Recipes;

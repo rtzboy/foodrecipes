@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, createContext, useContext } from 'react';
-import { RecipeType } from '../../types/recipeTypes';
+import { createContext, useContext } from 'react';
+import { RecipeListInfoType, RecipeReducerAction } from '../../types/recipeTypes';
 
 type FoodRecipeType = {
-	foodRecipes?: RecipeType;
-	setFoodRecipes: Dispatch<SetStateAction<RecipeType | undefined>>;
+	foodRecipes: RecipeListInfoType;
+	dispatchRecipes: React.Dispatch<RecipeReducerAction>;
 };
 
 export const FoodRecipeContext = createContext<FoodRecipeType>({} as FoodRecipeType);

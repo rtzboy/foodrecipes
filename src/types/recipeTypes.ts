@@ -31,3 +31,25 @@ export type RecipeDetailsType = {
 	url: string;
 	yield: number;
 };
+
+export type RecipeListInfoType = {
+	error: string | boolean;
+	loading: boolean;
+	recipeList: RecipeType | undefined;
+};
+
+export type RecipeReducerAction = RecipeSearchingAction | RecipeFoundAction | RecipeErrorAction;
+
+interface RecipeSearchingAction {
+	type: 'RECIPE_SEARCHING';
+}
+
+interface RecipeFoundAction {
+	type: 'RECIPE_FOUND';
+	payload: RecipeType | undefined;
+}
+
+interface RecipeErrorAction {
+	type: 'RECIPE_ERROR';
+	payload: string;
+}
