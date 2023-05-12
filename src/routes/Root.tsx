@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useReducer } from 'react';
 import { useLocation } from 'react-router-dom';
 import AnimatedOutlet from '../components/AnimatedOutlet';
-import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import { FoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
 import { INITAL_FOOD_RECIPES, recipesReducer } from '../lib/reducers/recipesReducer';
@@ -26,7 +25,6 @@ const Root = () => {
 					</motion.div>
 				</AnimatePresence>
 			</FoodRecipeContext.Provider>
-			<Footer />
 		</div>
 	);
 };

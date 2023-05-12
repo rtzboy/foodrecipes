@@ -19,7 +19,7 @@ const Navbar = () => {
 	));
 
 	return (
-		<nav className='fixed top-0 z-50 flex w-full items-center overflow-x-hidden bg-white py-5 text-lg sm:px-7'>
+		<nav className='fixed top-0 z-[99] flex w-full items-center overflow-x-hidden bg-white py-5 text-lg sm:px-7'>
 			<div className='mx-auto flex w-full max-w-7xl justify-between px-4 sm:px-8'>
 				<div className='text-2xl'>MyRecipes</div>
 				<ul className='hidden gap-6 sm:flex'>
@@ -46,13 +46,6 @@ const Navbar = () => {
 						}`}
 					>
 						{links}
-						<li className='py-2'>
-							<div className='text-white'>
-								<a href='' className='rounded-lg bg-neutral-900 px-6 py-1'>
-									SINGUP
-								</a>
-							</div>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -62,7 +55,8 @@ const Navbar = () => {
 
 const NAV_LINKS = [
 	{ id: 1, name: 'Home', linkTo: '/' },
-	{ id: 3, name: 'Recipes', linkTo: 'recipes' }
+	{ id: 2, name: 'Recipes', linkTo: 'recipes' },
+	{ id: 3, name: 'Articles', linkTo: 'articles' }
 ];
 
 export default Navbar;

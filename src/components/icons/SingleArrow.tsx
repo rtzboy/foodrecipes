@@ -1,6 +1,6 @@
 import { SVGProps } from '../../types/SVGInterface.';
 
-const Arrow = (props: SVGProps) => (
+const SingleArrow = (props: SVGProps) => (
 	<svg
 		{...props}
 		xmlns='http://www.w3.org/2000/svg'
@@ -9,8 +9,8 @@ const Arrow = (props: SVGProps) => (
 		strokeWidth={2}
 		stroke='currentColor'
 	>
-		<path strokeLinecap='round' strokeLinejoin='round' d='M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25' />
+		<path strokeLinecap='round' strokeLinejoin='round' d='M8.25 4.5l7.5 7.5-7.5 7.5' />
 	</svg>
 );
 
-export default Arrow;
+export default SingleArrow;

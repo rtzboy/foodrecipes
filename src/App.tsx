@@ -1,10 +1,12 @@
 import xdddd from '../src/assets/whoweare.jpg';
 import { drinks, healthy, lunch, shrimp } from './assets/popular/popularFiles';
 import DynamicBg from './components/DynamicBg';
+import Footer from './components/Footer';
 import LinkTo from './components/LinkTo';
 import WordLoop from './components/WordLoop';
 import Arrow from './components/icons/Arrow';
 import Fork from './components/icons/Fork';
+import { ALL_ARTICLES } from './constants/content';
 
 // TODO: move to another file?
 const word_list = ['Fried', 'Baked', 'Steamed', 'Boiled'];
@@ -108,6 +110,28 @@ const App = () => {
 					</ul>
 				</article>
 			</section>
+			<section className='mx-auto w-full max-w-7xl py-32'>
+				<div className='flex flex-col gap-8'>
+					<h2 className='text-center'>KEEP READING</h2>
+					<p className='text-center text-5xl'>Articles and news</p>
+					<ul className='grid justify-items-center gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]'>
+						{ALL_ARTICLES.map(blog => (
+							<li key={blog.id} className='overflow-hidden rounded-xl bg-slate-100'>
+								<LinkTo to={`articles/${blog.id}`}>
+									<div className='relative'>
+										<img src={blog.srcimg} alt={blog.title} className='w-[300px] object-cover' />
+									</div>
+								</LinkTo>
+								<div className='max-w-[300px] p-4'>
+									<h2 className='mb-2 text-lg'>{blog.title}</h2>
+									<p className='text-sm italic text-orange-500'>2023</p>
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+			<Footer />
 		</main>
 	);
 };
