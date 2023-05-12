@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logo from '../assets/logo.png';
 import LinkTo from './LinkTo';
 import Collapse from './icons/Collapse';
 import Menu from './icons/Menu';
@@ -21,7 +22,12 @@ const Navbar = () => {
 	return (
 		<nav className='fixed top-0 z-[99] flex w-full items-center overflow-x-hidden bg-white py-5 text-lg sm:px-7'>
 			<div className='mx-auto flex w-full max-w-7xl justify-between px-4 sm:px-8'>
-				<div className='text-2xl'>MyRecipes</div>
+				<LinkTo to='/' className='text-3xl font-bold'>
+					<div className='flex items-center gap-1'>
+						<img src={logo} alt='' className='w-10' />
+						<span>Plate Explorer</span>
+					</div>
+				</LinkTo>
 				<ul className='hidden gap-6 sm:flex'>
 					{NAV_LINKS.map(link => (
 						<li key={link.id} className='w-full text-center'>

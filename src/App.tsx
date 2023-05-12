@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import xdddd from '../src/assets/whoweare.jpg';
 import { drinks, healthy, lunch, shrimp } from './assets/popular/popularFiles';
 import DynamicBg from './components/DynamicBg';
@@ -26,6 +27,10 @@ const POP_CATEGORIES = [
 ];
 
 const App = () => {
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, []);
+
 	return (
 		<main>
 			<section className='relative h-screen w-full overflow-hidden'>
@@ -110,7 +115,7 @@ const App = () => {
 					</ul>
 				</article>
 			</section>
-			<section className='mx-auto w-full max-w-7xl py-32'>
+			<section className='mx-auto w-full max-w-7xl py-28'>
 				<div className='flex flex-col gap-8'>
 					<h2 className='text-center'>KEEP READING</h2>
 					<p className='text-center text-5xl'>Articles and news</p>

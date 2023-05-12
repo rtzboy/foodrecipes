@@ -1,12 +1,16 @@
+import { useEffect } from 'react';
 import imgtest from '../assets/bgFoodFour.jpg';
+import Footer from '../components/Footer';
 import LinkTo from '../components/LinkTo';
 import Arrow from '../components/icons/Arrow';
 import SingleArrow from '../components/icons/SingleArrow';
 import { ALL_ARTICLES } from '../constants/content';
 
-type Props = {};
+const Blogs = () => {
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, []);
 
-const Blogs = (props: Props) => {
 	return (
 		<main>
 			<section className='relative h-[400px] w-full text-center'>
@@ -72,6 +76,7 @@ const Blogs = (props: Props) => {
 					</ul>
 				</div>
 			</section>
+			<Footer />
 		</main>
 	);
 };

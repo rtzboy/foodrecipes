@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ALL_ARTICLES } from '../../constants/content';
+import Footer from '../Footer';
 import LinkTo from '../LinkTo';
 import SingleArrow from '../icons/SingleArrow';
 
-type BlogDetailsProps = {};
-
-const BlogDetails = (props: BlogDetailsProps) => {
+const BlogDetails = () => {
 	const { id } = useParams();
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, []);
 
 	const blogInfo = ALL_ARTICLES.find(blog => blog.id === id);
 
@@ -67,6 +70,7 @@ const BlogDetails = (props: BlogDetailsProps) => {
 					</div>
 				</div>
 			</section>
+			<Footer />
 		</main>
 	);
 };

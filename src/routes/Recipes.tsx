@@ -1,5 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react';
 import DynamicBg from '../components/DynamicBg';
+import Footer from '../components/Footer';
 import InputSearch from '../components/InputSearch';
 import Modal from '../components/Modal';
 import RecipeDetails from '../components/RecipeDetails';
@@ -21,6 +22,10 @@ const Recipes = () => {
 	useEffect(() => {
 		if (foodRecipes.recipeList) return;
 		latestRecipes(dispatchRecipes);
+	}, []);
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}, []);
 
 	return (
@@ -78,6 +83,7 @@ const Recipes = () => {
 					{foodRecipes.recipeList?.to}/{foodRecipes.recipeList?.count}
 				</div>
 			</section>
+			<Footer />
 		</section>
 	);
 };
