@@ -30,7 +30,7 @@ const RecipeRow = ({ recipe, setPreviewRecipe, notFound }: RecipeRowProps) => {
 				</span>
 				<span
 					onClick={() => setPreviewRecipe(recipe)}
-					className='group absolute bottom-4 right-4 block cursor-pointer rounded-lg bg-light-orange p-1 text-sm text-black'
+					className='group absolute bottom-4 right-4 block cursor-pointer rounded-lg bg-light-orange p-1 text-sm text-black opacity-80 hover:opacity-100'
 				>
 					<Maximize className='h-6 transition-all group-hover:scale-125' />
 				</span>

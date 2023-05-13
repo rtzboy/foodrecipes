@@ -10,7 +10,7 @@ const Search = (props: SVGProps) => (
 		stroke='currentColor'
 		strokeLinecap='round'
 		strokeLinejoin='round'
-		strokeWidth={1.25}
+		strokeWidth={2}
 		viewBox='0 0 24 24'
 	>
 		<path stroke='none' d='M0 0h24v24H0z'></path>

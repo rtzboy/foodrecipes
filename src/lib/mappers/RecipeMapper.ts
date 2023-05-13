@@ -12,7 +12,12 @@ export const recipeObjectMapper = (objectRecipe: any) => ({
 	label: objectRecipe.label,
 	mealType: objectRecipe.mealType,
 	shareAs: objectRecipe.shareAs,
-	source: objectRecipe.source,
+	source: objectRecipe.source.slice(
+		0,
+		objectRecipe.source.indexOf('.') > 0
+			? objectRecipe.source.indexOf('.')
+			: objectRecipe.source.length
+	),
 	totalTime: objectRecipe.totalTime,
 	url: objectRecipe.url,
 	yield: objectRecipe.yield

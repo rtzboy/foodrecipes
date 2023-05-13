@@ -18,6 +18,8 @@ export default {
 			black: '#000000',
 			white: '#FFFFFF',
 			red: '#FF0000',
+			green: '#1f4e1c',
+			lightblue: '#02557a',
 			'light-orange': '#FFD7C9',
 			'whisper-blue': '#f2f9ff',
 			'slate-gray': '#7F7F7F',

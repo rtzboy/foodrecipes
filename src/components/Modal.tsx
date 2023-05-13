@@ -14,13 +14,13 @@ const Modal = ({ onClose, children }: ModalProps) => {
 	}, []);
 
 	return createPortal(
-		<div className='fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-5'>
-			<div className='relative'>
+		<div className='fixed inset-0 z-[999] flex justify-center bg-black/80 p-4'>
+			<div className='relative flex items-center overflow-auto rounded-xl'>
 				<button
 					onClick={onClose}
-					className='absolute right-3 top-3 rounded-lg bg-white/70 hover:bg-white'
+					className='fixed right-4 top-4 z-[100] rounded-lg border border-slate-gray bg-whisper-blue hover:bg-white md:right-6 md:top-6'
 				>
-					<span className='block p-1 text-gray-700 hover:text-slate-950'>
+					<span className='hover:text-slate-950 block p-1 text-gray'>
 						<XMark className='h-6' />
 					</span>
 				</button>
