@@ -17,25 +17,25 @@ const Blogs = () => {
 				<img src={imgtest} alt='imgtest' className='absolute h-[400px] w-full object-cover' />
 				<div className='relative z-20 mx-auto flex max-w-7xl flex-col gap-4 px-8 pt-[150px] sm:flex-row sm:gap-0'>
 					<div className='w-full text-5xl sm:w-1/2 md:w-[60%]'>
-						<div className='flex h-full w-full items-center justify-center sm:justify-normal'>
-							Blogs
+						<div className='flex h-full w-full items-center justify-center font-space_grotesk font-semibold sm:justify-normal'>
+							Articles
 						</div>
 					</div>
 					<div className='w-full sm:w-1/2 md:w-[40%]'>
 						<div className='relative top-12 h-[180px] w-full overflow-hidden rounded-xl bg-white p-6 shadow-xl sm:top-24'>
-							<div className='absolute left-0 top-0 h-full w-[6px] bg-orange-500' />
-							<div className='flex h-full flex-col items-start justify-center gap-4'>
+							<div className='bg-orange-500 absolute left-0 top-0 h-full w-[6px]' />
+							<div className='flex h-full flex-col items-start justify-center gap-4 font-space_grotesk font-semibold'>
 								<div>
 									<ul className='flex items-center gap-1'>
-										<li className='text-gray-700'>Home</li>
-										<li className='text-orange-700'>
+										<li className='text-gray'>Home</li>
+										<li className='text-orange'>
 											<SingleArrow className='h-5' />
 										</li>
-										<li className='text-gray-700'>Articles</li>
-										<li className='text-orange-700'>
+										<li className='text-gray'>Articles</li>
+										<li className='text-orange'>
 											<SingleArrow className='h-5' />
 										</li>
-										<li className='text-gray-700'>Kitches Tips</li>
+										<li className='text-gray'>Kitches Tips</li>
 									</ul>
 								</div>
 								<div className='text-3xl'>Kitches Tips</div>
@@ -50,15 +50,15 @@ const Blogs = () => {
 						{ALL_ARTICLES.map(article => (
 							<li key={article.id} className='grid gap-4 sm:grid-cols-[2fr,1fr]'>
 								<div className='flex h-full flex-col gap-2'>
-									<h2 className='text-2xl'>{article.title}</h2>
-									<div className='text-gray-700'>{article.description}</div>
-									<div className='text-sm italic text-gray-500'>{article.date}</div>
+									<h2 className='font-space_grotesk text-2xl font-semibold'>{article.title}</h2>
+									<div className='font-inter leading-relaxed text-gray'>{article.description}</div>
+									<div className='text-sm italic text-slate-gray'>{article.date}</div>
 									<div>
-										<LinkTo to={article.link} className='text-orange-500'>
-											<div className='flex items-center gap-1 font-semibold'>
+										<LinkTo to={article.link} className='inline-block text-orange'>
+											<div className='group flex items-center gap-1 font-semibold'>
 												<span>Read More</span>
 												<span>
-													<Arrow className='h-4' />
+													<Arrow className='h-4 group-hover:animate-bounce' />
 												</span>
 											</div>
 										</LinkTo>

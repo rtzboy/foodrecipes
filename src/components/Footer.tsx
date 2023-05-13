@@ -8,7 +8,7 @@ const Footer = () => {
 		<footer className='bg-white py-2'>
 			<section className='mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 p-4 md:flex-row'>
 				<div className=''>
-					<a href='https://www.edamam.com'>
+					<a href='https://www.edamam.com' target='_blank' rel='noreferrer'>
 						<img src='https://developer.edamam.com/images/white.png' alt='edaman' />
 					</a>
 				</div>

@@ -24,13 +24,11 @@ const variantsUl = {
 
 const RecipeShow = ({ foodRecipes, setPreviewRecipe }: RecipeShowProps) => {
 	if (foodRecipes.error)
-		return (
-			<p className='w-full py-2 text-center text-xl italic text-red-500'>{foodRecipes.error}</p>
-		);
+		return <p className='w-full py-2 text-center text-xl italic text-red'>{foodRecipes.error}</p>;
 
 	if (foodRecipes.recipeList?.count === 0)
 		return (
-			<p className='w-full py-2 text-center text-xl italic text-orange-500'>Recipe not found!</p>
+			<p className='text-orange-500 w-full py-2 text-center text-xl italic'>Recipe not found!</p>
 		);
 
 	return (

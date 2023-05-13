@@ -38,15 +38,19 @@ const Recipes = () => {
 			<section className='relative h-screen w-full overflow-hidden'>
 				<DynamicBg bglist={bgList} opacitylvl={1} />
 				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 px-6'>
-					<h2 className='max-w-2xl text-center text-6xl'>What are your favorite food?</h2>
-					<p className='max-w-3xl text-center text-gray-600'>
+					<h2 className='max-w-2xl text-center font-space_grotesk text-5xl font-semibold md:text-6xl'>
+						What are your favorite food?
+					</h2>
+					<p className='max-w-3xl text-center font-inter tracking-wide text-black'>
 						Whether you're craving a specific cuisine or looking for inspiration, our search feature
 						will help you discover the perfect recipe.
 					</p>
 					<InputSearch className='w-full sm:max-w-md' />
-					<p className='font-bold tracking-wider text-orange-600'>POPULAR SEARCH</p>
+					<p className='font-space_grotesk font-semibold tracking-wider text-orange'>
+						POPULAR SEARCH
+					</p>
 					<div>
-						<ul className='flex flex-wrap justify-center gap-6 text-orange-600'>
+						<ul className='flex flex-wrap justify-center gap-6 font-inter text-sm tracking-wider text-orange'>
 							<li className='rounded-2xl bg-white px-3 py-1'>#RoastDuck</li>
 							<li className='rounded-2xl bg-white px-3 py-1'>#Shrimp</li>
 							<li className='rounded-2xl bg-white px-3 py-1'>#Dessert</li>
@@ -55,7 +59,7 @@ const Recipes = () => {
 						</ul>
 					</div>
 					<LatestBtn loadStatus={foodRecipes.loading} />
-					<h1 className='mt-12 text-4xl'>LATEST RECIPES</h1>
+					<h1 className='mt-12 font-space_grotesk text-4xl font-semibold'>Latest Recipes</h1>
 				</div>
 			</section>
 			<section className='mx-auto max-w-7xl'>
@@ -65,21 +69,26 @@ const Recipes = () => {
 				<div className='flex justify-center'>
 					<button
 						disabled={foodRecipes.loading || !foodRecipes.recipeList?.next}
-						onClick={() => nextPageRecipe(dispatchRecipes, foodRecipes.recipeList?.next)}
-						className='flex h-[30px] w-[90px] items-center justify-center rounded-xl bg-orange-200 disabled:opacity-50'
+						onClick={() => {
+							nextPageRecipe(dispatchRecipes, foodRecipes.recipeList?.next);
+							setTimeout(() => {
+								window.scrollTo({ top: 850, behavior: 'smooth' });
+							}, 1000);
+						}}
+						className='flex h-[30px] w-[90px] items-center justify-center rounded-xl bg-orange disabled:opacity-50'
 					>
 						{foodRecipes.loading ? (
 							<span>
 								<LoadingAnim className='h-5' />
 							</span>
 						) : (
-							<span>
+							<span className='text-whisper-blue'>
 								<NextArrow className='h-6' />
 							</span>
 						)}
 					</button>
 				</div>
-				<div className='px-4 text-xs italic text-slate-400'>
+				<div className='px-4 text-xs italic text-slate-gray'>
 					{foodRecipes.recipeList?.to}/{foodRecipes.recipeList?.count}
 				</div>
 			</section>

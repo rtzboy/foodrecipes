@@ -13,7 +13,11 @@ const InputSearch = ({ className }: InputSearchProps) => {
 	const { dispatchRecipes } = useFoodRecipeContext();
 
 	return (
-		<div className={`flex overflow-hidden rounded-xl border border-neutral-400 ${className || ''}`}>
+		<div
+			className={`flex overflow-hidden rounded-xl border border-slate-gray bg-white ${
+				className || ''
+			}`}
+		>
 			<input
 				type='text'
 				value={searchFood}
@@ -21,11 +25,11 @@ const InputSearch = ({ className }: InputSearchProps) => {
 				onChange={evt => setSearchFood(evt.target.value)}
 				placeholder='Hungry?'
 			/>
-			<div className='relative flex w-12 items-center justify-center bg-orange-50'>
+			<div className='relative flex w-12 items-center justify-center'>
 				<button
 					disabled={!searchFood}
 					onClick={() => searchRecipe(dispatchRecipes, searchFood)}
-					className='disabled:opacity-50'
+					className='flex h-full w-full items-center justify-center bg-light-orange disabled:opacity-50'
 				>
 					<Search className='h-5' />
 				</button>

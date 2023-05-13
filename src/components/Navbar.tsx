@@ -11,8 +11,8 @@ const Navbar = () => {
 		<li key={link.id} className='w-full text-center'>
 			<LinkTo
 				to={link.linkTo}
-				active='text-orange-600 bg-orange-500 text-white'
-				className='block w-full py-2 transition-all hover:bg-orange-500 hover:text-white'
+				active='text-orange bg-orange text-white'
+				className='block w-full py-2 transition-all hover:bg-orange hover:text-white'
 			>
 				{link.name}
 			</LinkTo>
@@ -20,9 +20,9 @@ const Navbar = () => {
 	));
 
 	return (
-		<nav className='fixed top-0 z-[99] flex w-full items-center overflow-x-hidden bg-white py-5 text-lg sm:px-7'>
+		<nav className='fixed top-0 z-[99] flex w-full items-center overflow-x-hidden bg-white py-5 font-space_grotesk text-lg font-semibold sm:px-7'>
 			<div className='mx-auto flex w-full max-w-7xl justify-between px-4 sm:px-8'>
-				<LinkTo to='/' className='text-3xl font-bold'>
+				<LinkTo to='/' className='text-2xl font-bold md:text-3xl'>
 					<div className='flex items-center gap-1'>
 						<img src={logo} alt='' className='w-10' />
 						<span>Plate Explorer</span>
@@ -33,8 +33,8 @@ const Navbar = () => {
 						<li key={link.id} className='w-full text-center'>
 							<LinkTo
 								to={link.linkTo}
-								active='text-orange-600 underline underline-offset-4 decoration-2'
-								className='under block w-full py-2 transition-all hover:text-orange-600'
+								active='text-orange underline underline-offset-4 decoration-2'
+								className='under block w-full py-2 transition-all hover:text-orange'
 							>
 								{link.name}
 							</LinkTo>
