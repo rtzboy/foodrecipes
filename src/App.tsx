@@ -29,6 +29,7 @@ const POP_CATEGORIES = [
 const App = () => {
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
+		document.title = 'Plate Explorer';
 	}, []);
 
 	return (

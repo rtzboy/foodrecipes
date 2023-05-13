@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { RecipeDetailsType } from '../types/recipeTypes';
-import CheckMark from './icons/CheckMark';
-import ChevronDown from './icons/ChevronDown';
-import Clock from './icons/Clock';
-import Dishtype from './icons/Dishtype';
-import Fire from './icons/Fire';
-import Fork from './icons/Fork';
-import Globe from './icons/Globe';
-import Source from './icons/Source';
+import { RecipeDetailsType } from '../../types/recipeTypes';
+import CheckMark from '../icons/CheckMark';
+import ChevronDown from '../icons/ChevronDown';
+import Clock from '../icons/Clock';
+import Dishtype from '../icons/Dishtype';
+import Fire from '../icons/Fire';
+import Fork from '../icons/Fork';
+import Globe from '../icons/Globe';
+import Source from '../icons/Source';
 
 type RecipeDetailsProps = {
 	details: RecipeDetailsType;
@@ -122,7 +122,7 @@ const RecipeDetails = ({ details }: RecipeDetailsProps) => {
 					}`}
 				>
 					Did you find the perfect recipe? Go the link below{' '}
-					<span className='underline'>{details.source}</span>
+					<span className='underline underline-offset-2'>{details.source}</span>
 				</div>
 			</div>
 		</div>

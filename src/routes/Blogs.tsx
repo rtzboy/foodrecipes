@@ -9,6 +9,7 @@ import { ALL_ARTICLES } from '../constants/content';
 const Blogs = () => {
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
+		document.title = 'Plate Explorer | Articles';
 	}, []);
 
 	return (

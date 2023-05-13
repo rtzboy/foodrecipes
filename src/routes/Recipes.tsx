@@ -3,10 +3,10 @@ import DynamicBg from '../components/DynamicBg';
 import Footer from '../components/Footer';
 import InputSearch from '../components/InputSearch';
 import Modal from '../components/Modal';
-import RecipeDetails from '../components/RecipeDetails';
 import LatestBtn from '../components/buttons/LatestBtn';
 import LoadingAnim from '../components/icons/LoadingAnim';
 import NextArrow from '../components/icons/NextArrow';
+import RecipeDetails from '../components/recipe/RecipeDetails';
 import RecipeShow from '../components/recipe/RecipeShow';
 import { RANDOM_TYPE } from '../constants/content';
 import { latestRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
@@ -26,6 +26,7 @@ const Recipes = () => {
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
+		document.title = 'Plate Explorer | Recipes';
 	}, []);
 
 	return (
