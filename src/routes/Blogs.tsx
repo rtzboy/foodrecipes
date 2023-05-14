@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import imgtest from '../assets/bgFoodFour.jpg';
+import bgarticleimg from '../assets/bgarticle.jpg';
 import Footer from '../components/Footer';
 import LinkTo from '../components/LinkTo';
 import Arrow from '../components/icons/Arrow';
@@ -15,7 +15,11 @@ const Blogs = () => {
 	return (
 		<main>
 			<section className='relative h-[400px] w-full text-center'>
-				<img src={imgtest} alt='imgtest' className='absolute h-[400px] w-full object-cover' />
+				<img
+					src={bgarticleimg}
+					alt='imgtest'
+					className='absolute h-[400px] w-full object-cover opacity-60'
+				/>
 				<div className='relative z-20 mx-auto flex max-w-7xl flex-col gap-4 px-8 pt-[150px] sm:flex-row sm:gap-0'>
 					<div className='w-full text-5xl sm:w-1/2 md:w-[60%]'>
 						<div className='flex h-full w-full items-center justify-center font-space_grotesk font-semibold sm:justify-normal'>

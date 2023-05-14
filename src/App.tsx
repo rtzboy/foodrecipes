@@ -13,10 +13,10 @@ import { ALL_ARTICLES } from './constants/content';
 const word_list = ['Fried', 'Baked', 'Steamed', 'Boiled'];
 
 const bgList = [
-	'/src/assets/bgFood.jpg',
-	'/src/assets/bgFoodTwo.jpg',
-	'/src/assets/bgFoodThree.jpg',
-	'/src/assets/bgFoodFour.jpg'
+	'/src/assets/homeimgs/bghome.png',
+	'/src/assets/homeimgs/bghome2.png',
+	'/src/assets/homeimgs/bghome3.png',
+	'/src/assets/homeimgs/bghome4.png'
 ];
 
 const POP_CATEGORIES = [
@@ -35,7 +35,7 @@ const App = () => {
 	return (
 		<main>
 			<section className='relative h-screen w-full overflow-hidden'>
-				<DynamicBg bglist={bgList} opacitylvl={0.6} />
+				<DynamicBg bglist={bgList} opacitylvl={0.9} />
 				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 font-space_grotesk font-semibold sm:gap-6'>
 					<h1 className='flex justify-center text-6xl font-bold text-orange sm:text-7xl'>
 						<span className='opacity-0'>&nbps;</span>

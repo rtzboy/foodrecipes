@@ -24,6 +24,11 @@ const InputSearch = ({ className }: InputSearchProps) => {
 				className='block h-full w-full px-4 py-3 outline-none'
 				onChange={evt => setSearchFood(evt.target.value)}
 				placeholder='Hungry?'
+				onKeyUp={evt => {
+					if (searchFood && evt.key === 'Enter') {
+						searchRecipe(dispatchRecipes, searchFood);
+					}
+				}}
 			/>
 			<div className='relative flex w-12 items-center justify-center'>
 				<button

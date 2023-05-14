@@ -3,14 +3,22 @@ import { createPortal } from 'react-dom';
 import XMark from './icons/XMark';
 
 type ModalProps = {
-	onClose?: () => void;
+	onClose: () => void;
 	children?: JSX.Element;
 };
 
 const Modal = ({ onClose, children }: ModalProps) => {
 	useEffect(() => {
+		const evtEscapeClose = (evt: KeyboardEvent) => {
+			if (evt.key === 'Escape') onClose();
+		};
+
 		document.body.classList.add('overflow-y-hidden');
-		return () => document.body.classList.remove('overflow-y-hidden');
+		document.addEventListener('keyup', evtEscapeClose);
+		return () => {
+			document.body.classList.remove('overflow-y-hidden');
+			document.removeEventListener('keyup', evtEscapeClose);
+		};
 	}, []);
 
 	return createPortal(
