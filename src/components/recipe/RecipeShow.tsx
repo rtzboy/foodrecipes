@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Dispatch, SetStateAction } from 'react';
 import { RecipeDetailsType, RecipeListInfoType } from '../../types/recipeTypes';
 import RecipeRow from './RecipeRow';
@@ -6,20 +5,6 @@ import RecipeRow from './RecipeRow';
 type RecipeShowProps = {
 	foodRecipes: RecipeListInfoType;
 	setPreviewRecipe: Dispatch<SetStateAction<RecipeDetailsType | undefined>>;
-};
-
-const variantsUl = {
-	hidden: {
-		transition: {
-			when: 'afterChildren'
-		}
-	},
-	visible: {
-		transition: {
-			when: 'beforeChildren',
-			staggerChildren: 0.1
-		}
-	}
 };
 
 const RecipeShow = ({ foodRecipes, setPreviewRecipe }: RecipeShowProps) => {
@@ -32,12 +17,7 @@ const RecipeShow = ({ foodRecipes, setPreviewRecipe }: RecipeShowProps) => {
 		);
 
 	return (
-		<motion.ul
-			initial='hidden'
-			animate='visible'
-			variants={variantsUl}
-			className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'
-		>
+		<ul className='grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] justify-items-center gap-2 sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] sm:gap-3 md:gap-6'>
 			{foodRecipes.recipeList?.recipe.map(recipe => (
 				<RecipeRow
 					key={recipe.id}
@@ -46,7 +26,7 @@ const RecipeShow = ({ foodRecipes, setPreviewRecipe }: RecipeShowProps) => {
 					notFound={foodRecipes.recipeList?.count}
 				/>
 			))}
-		</motion.ul>
+		</ul>
 	);
 };
 

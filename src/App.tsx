@@ -1,13 +1,16 @@
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import xdddd from '../src/assets/whoweare.jpg';
 import { drinks, healthy, lunch, shrimp } from './assets/popular/popularFiles';
 import DynamicBg from './components/DynamicBg';
 import Footer from './components/Footer';
 import LinkTo from './components/LinkTo';
+import SectionWrapper from './components/SectionWrapper';
 import WordLoop from './components/WordLoop';
 import Arrow from './components/icons/Arrow';
 import Fork from './components/icons/Fork';
 import { ALL_ARTICLES } from './constants/content';
+import { childEffectIn, staggerContainer, textMotion } from './constants/motionAnimations';
 
 // TODO: move to another file?
 const word_list = ['Fried', 'Baked', 'Steamed', 'Boiled'];
@@ -37,15 +40,15 @@ const App = () => {
 			<section className='relative h-screen w-full overflow-hidden'>
 				<DynamicBg bglist={bgList} opacitylvl={0.9} />
 				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 font-space_grotesk font-semibold sm:gap-6'>
-					<h1 className='flex justify-center text-6xl font-bold text-orange sm:text-7xl'>
+					<h1 className='flex justify-center text-5xl font-bold text-orange sm:text-7xl'>
 						<span className='opacity-0'>&nbps;</span>
 						<WordLoop listwords={word_list} duration={2.5} />
 					</h1>
-					<p className='max-w-3xl px-4 text-center text-3xl sm:px-4 sm:text-4xl'>
+					<p className='max-w-3xl px-4 text-center text-2xl sm:px-4 sm:text-4xl'>
 						no matter how you cook, with our website, you will be able to discover a wide variety of
 						delicious food recipes from different websites, all in one place.
 					</p>
-					<p className='max-w-4xl px-4 text-center text-lg font-normal text-gray sm:px-4'>
+					<p className='max-w-4xl px-4 text-center text-base font-normal text-gray sm:px-4 sm:text-lg'>
 						Forget about browsing through multiple pages in search of the perfect recipe; here, we
 						offer you the convenience of accessing a vast catalog of tasty and creative dishes.
 					</p>
@@ -57,10 +60,10 @@ const App = () => {
 					</LinkTo>
 				</div>
 			</section>
-			<section className='py-20'>
+			<SectionWrapper className='py-20'>
 				<div className='mx-auto flex w-full max-w-7xl flex-col gap-6 px-4'>
 					<div className='grid gap-8 font-space_grotesk font-semibold md:grid-cols-2'>
-						<div className='flex flex-col gap-8'>
+						<motion.div variants={textMotion('left')} className='flex flex-col gap-8'>
 							<h2 className='tracking-wider text-orange'>WHO WE ARE</h2>
 							<p className='text-3xl md:text-4xl '>
 								Discover our platform to explore and enjoy exceptional recipes
@@ -71,14 +74,20 @@ const App = () => {
 								recipes for special occasions. These categories will inspire you and help you find
 								the perfect recipe for any occasion.
 							</p>
-						</div>
-						<div className='relative flex items-center px-4 py-8'>
+						</motion.div>
+						<motion.div
+							variants={{
+								hidden: { scale: 0.5, opacity: 0 },
+								visible: { scale: 1, opacity: 1, transition: { type: 'spring' } }
+							}}
+							className='relative flex items-center px-4 py-8'
+						>
 							<img src={xdddd} alt='' className='w-full rounded-xl' />
-						</div>
+						</motion.div>
 					</div>
 				</div>
-			</section>
-			<section className='relative'>
+			</SectionWrapper>
+			<SectionWrapper className='relative'>
 				<div
 					className='absolute h-[50vh] w-full bg-black bg-cover bg-center bg-no-repeat'
 					style={{ backgroundImage: 'url("/src/assets/popularcat.png")' }}
@@ -87,14 +96,23 @@ const App = () => {
 					<div className='font-bold tracking-wider'>
 						<span className='rounded-lg bg-black/30 px-2 py-1'>FEATURED</span>
 					</div>
-					<div className='text-5xl font-semibold'>Popular Categories</div>
-					<div className='mx-auto max-w-3xl font-inter text-base tracking-wide'>
+					<motion.div variants={textMotion('up')} className='text-3xl font-semibold md:text-5xl'>
+						Popular Categories
+					</motion.div>
+					<motion.div
+						variants={textMotion('down')}
+						className='mx-auto max-w-3xl font-inter text-base tracking-wide'
+					>
 						Browse our popular categories and find culinary inspiration in one place. From classic
 						dishes to gastronomic trends.
-					</div>
-					<ul className='flex flex-wrap justify-evenly gap-8'>
+					</motion.div>
+					<motion.ul
+						variants={staggerContainer(0.5)}
+						className='flex flex-wrap justify-evenly gap-8'
+					>
 						{POP_CATEGORIES.map(category => (
-							<li
+							<motion.li
+								variants={childEffectIn()}
 								key={category.id}
 								className='group relative h-60 w-60 overflow-hidden rounded-full border-8 border-white'
 							>
@@ -115,18 +133,35 @@ const App = () => {
 										<Arrow className='h-5' />
 									</div>
 								</LinkTo>
-							</li>
+							</motion.li>
 						))}
-					</ul>
+					</motion.ul>
 				</article>
-			</section>
-			<section className='mx-auto w-full max-w-7xl py-28'>
+			</SectionWrapper>
+			<SectionWrapper className='mx-auto w-full max-w-7xl py-28'>
 				<div className='flex flex-col gap-8 font-space_grotesk'>
-					<h2 className='text-center font-semibold tracking-wider text-orange'>KEEP READING</h2>
-					<p className='text-center text-5xl font-semibold'>Articles and news</p>
-					<ul className='grid justify-items-center gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]'>
+					<motion.h2
+						variants={textMotion('left')}
+						className='text-center font-semibold tracking-wider text-orange'
+					>
+						KEEP READING
+					</motion.h2>
+					<motion.p
+						variants={textMotion('right')}
+						className='text-center text-3xl font-semibold md:text-5xl'
+					>
+						Articles and news
+					</motion.p>
+					<motion.ul
+						variants={staggerContainer(0.4)}
+						className='grid justify-items-center gap-4 px-4 sm:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]'
+					>
 						{ALL_ARTICLES.map(blog => (
-							<li key={blog.id} className='overflow-hidden rounded-xl bg-whisper-blue'>
+							<motion.li
+								variants={childEffectIn()}
+								key={blog.id}
+								className='overflow-hidden rounded-xl bg-whisper-blue'
+							>
 								<LinkTo to={`articles/${blog.id}`}>
 									<div className='relative'>
 										<img src={blog.srcimg} alt={blog.title} className='w-[300px] object-cover' />
@@ -136,11 +171,11 @@ const App = () => {
 									<h2 className='mb-2 text-lg font-semibold'>{blog.title}</h2>
 									<p className='text-sm italic text-orange'>2023</p>
 								</div>
-							</li>
+							</motion.li>
 						))}
-					</ul>
+					</motion.ul>
 				</div>
-			</section>
+			</SectionWrapper>
 			<Footer />
 		</main>
 	);

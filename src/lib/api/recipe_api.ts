@@ -22,7 +22,6 @@ export const foodRecipeCall = async (name: string) => {
 		}
 		return { success: false, message: res.statusText };
 	} catch (err: any) {
-		console.log(err);
 		return { success: false, message: err.message };
 	}
 };
@@ -44,7 +43,6 @@ export const nextRecipeCall = async (url: string) => {
 		}
 		return { success: false, message: res.statusText };
 	} catch (err: any) {
-		console.log(err);
 		return { success: false, message: err.message };
 	}
 };

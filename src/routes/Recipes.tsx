@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { Dispatch, useEffect, useState } from 'react';
 import DynamicBg from '../components/DynamicBg';
 import Footer from '../components/Footer';
@@ -31,15 +32,20 @@ const Recipes = () => {
 
 	return (
 		<section>
-			{previewRecipe && (
-				<Modal onClose={() => setPreviewRecipe(undefined)}>
-					<RecipeDetails details={previewRecipe} />
-				</Modal>
-			)}
+			<AnimatePresence>
+				{previewRecipe && (
+					<Modal onClose={() => setPreviewRecipe(undefined)}>
+						<RecipeDetails details={previewRecipe} />
+					</Modal>
+				)}
+			</AnimatePresence>
 			<section className='relative h-screen w-full overflow-hidden'>
 				<DynamicBg bglist={bgList} opacitylvl={1} />
-				<div className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-8 px-6'>
-					<h2 className='max-w-2xl text-center font-space_grotesk text-5xl font-semibold md:text-6xl'>
+				<motion.div
+					variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+					className='absolute left-1/2 top-1/2 flex w-full max-w-7xl -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6 sm:gap-8'
+				>
+					<h2 className='max-w-2xl text-center font-space_grotesk text-4xl font-semibold md:text-6xl'>
 						What are your favorite food?
 					</h2>
 					<p className='max-w-3xl text-center font-inter tracking-wide text-black'>
@@ -60,8 +66,10 @@ const Recipes = () => {
 						</ul>
 					</div>
 					<LatestBtn loadStatus={foodRecipes.loading} />
-					<h1 className='mt-12 font-space_grotesk text-4xl font-semibold'>Latest Recipes</h1>
-				</div>
+					<h1 className='mt-12 font-space_grotesk text-3xl font-semibold md:text-4xl'>
+						Latest Recipes
+					</h1>
+				</motion.div>
 			</section>
 			<section className='mx-auto max-w-7xl'>
 				<div className='mb-6 px-3'>

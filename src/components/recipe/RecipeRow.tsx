@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
 import { Dispatch, SetStateAction } from 'react';
 import { RecipeDetailsType } from '../../types/recipeTypes';
+
+import { motion } from 'framer-motion';
 import Maximize from '../icons/Maximize';
 
 type RecipeRowProps = {
@@ -9,16 +10,11 @@ type RecipeRowProps = {
 	notFound?: number;
 };
 
-const variantsChild = {
-	hidden: { scale: 0.5, opacity: 0 },
-	visible: { scale: 1, opacity: 1, transition: { type: 'spring' } }
-};
-
 const RecipeRow = ({ recipe, setPreviewRecipe, notFound }: RecipeRowProps) => {
 	if (notFound === 0) return <li>Recipe not found!!</li>;
 
 	return (
-		<motion.li layout variants={variantsChild} className='relative rounded-lg p-2'>
+		<motion.li layout className='relative rounded-lg p-2'>
 			<div className='relative'>
 				<img
 					src={recipe.images.large?.url || recipe.images.regular?.url}

@@ -1,8 +1,11 @@
+import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ALL_ARTICLES } from '../../constants/content';
+import { staggerContainer, textMotion } from '../../constants/motionAnimations';
 import Footer from '../Footer';
 import LinkTo from '../LinkTo';
+import SectionWrapper from '../SectionWrapper';
 import SingleArrow from '../icons/SingleArrow';
 
 const BlogDetails = () => {
@@ -15,13 +18,16 @@ const BlogDetails = () => {
 
 	return (
 		<main>
-			<section className='relative h-[400px] sm:h-[500px]'>
+			<SectionWrapper className='relative h-[400px] sm:h-[500px]'>
 				<img
 					src={blogInfo?.srcimg}
 					alt=''
 					className='absolute h-[400px] w-full object-cover sm:h-[500px]'
 				/>
-				<div className='relative z-30 mx-auto w-full max-w-7xl px-12 pt-[230px] sm:pt-[330px]'>
+				<motion.div
+					variants={textMotion('up')}
+					className='relative z-30 mx-auto w-full max-w-7xl px-12 pt-[230px] sm:pt-[330px]'
+				>
 					<div className='relative w-full overflow-hidden rounded-xl bg-white p-6 shadow-xl sm:p-12'>
 						<div className='absolute left-0 top-0 h-full w-[6px] bg-orange' />
 						<div className='flex h-full flex-col items-start justify-center gap-8'>
@@ -43,21 +49,27 @@ const BlogDetails = () => {
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-			<section className='mx-auto mt-[100px] w-full max-w-7xl'>
+				</motion.div>
+			</SectionWrapper>
+			<SectionWrapper className='mx-auto mt-[100px] w-full max-w-7xl'>
 				<div className='flex flex-col gap-8 md:flex-row'>
-					<div className='rounded-xl bg-whisper-blue p-8 md:w-[60%] lg:w-[70%]'>
+					<motion.div
+						variants={{
+							hidden: { scale: 0.5, opacity: 0 },
+							visible: { scale: 1, opacity: 1, transition: { type: 'spring' } }
+						}}
+						className='rounded-xl bg-whisper-blue p-8 md:w-[60%] lg:w-[70%]'
+					>
 						<p className='whitespace-pre-line text-justify font-inter leading-relaxed'>
 							{blogInfo?.content}
 						</p>
-					</div>
+					</motion.div>
 					<div className='md:w-[40%] lg:w-[30%]'>
 						<div className='sticky top-24 h-[50vh] px-2 md:px-4'>
 							<h2 className='mb-4 font-space_grotesk text-3xl font-semibold'>Latest Post</h2>
-							<ul className='flex flex-col gap-8'>
+							<motion.ul variants={staggerContainer(0.5)} className='flex flex-col gap-8'>
 								{ALL_ARTICLES.map(article => (
-									<li key={article.id} className='flex gap-4'>
+									<motion.li variants={textMotion('right')} key={article.id} className='flex gap-4'>
 										<div className='flex max-w-[150px] items-center justify-center'>
 											<img src={article.srcimg} alt={article.title} className='w-full rounded-xl' />
 										</div>
@@ -69,13 +81,13 @@ const BlogDetails = () => {
 											</LinkTo>
 											<div className='text-sm italic text-gray'>{article.date}</div>
 										</div>
-									</li>
+									</motion.li>
 								))}
-							</ul>
+							</motion.ul>
 						</div>
 					</div>
 				</div>
-			</section>
+			</SectionWrapper>
 			<Footer />
 		</main>
 	);

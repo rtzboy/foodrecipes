@@ -8,7 +8,7 @@ const Navbar = () => {
 	const [toggle, setToggle] = useState(false);
 
 	const links = NAV_LINKS.map(link => (
-		<li key={link.id} className='w-full text-center'>
+		<li onClick={() => setToggle(false)} key={link.id} className='w-full text-center'>
 			<LinkTo
 				to={link.linkTo}
 				active='text-orange bg-orange text-white'
