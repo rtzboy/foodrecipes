@@ -17,7 +17,7 @@ const BlogDetails = () => {
 	const blogInfo = ALL_ARTICLES.find(blog => blog.id === id);
 
 	return (
-		<main>
+		<main className='overflow-hidden'>
 			<SectionWrapper className='relative h-[400px] sm:h-[500px]'>
 				<img
 					src={blogInfo?.srcimg}
@@ -69,7 +69,7 @@ const BlogDetails = () => {
 							<h2 className='mb-4 font-space_grotesk text-3xl font-semibold'>Latest Post</h2>
 							<motion.ul variants={staggerContainer(0.5)} className='flex flex-col gap-8'>
 								{ALL_ARTICLES.map(article => (
-									<motion.li variants={textMotion('right')} key={article.id} className='flex gap-4'>
+									<motion.li variants={textMotion('down')} key={article.id} className='flex gap-4'>
 										<div className='flex max-w-[150px] items-center justify-center'>
 											<img src={article.srcimg} alt={article.title} className='w-full rounded-xl' />
 										</div>

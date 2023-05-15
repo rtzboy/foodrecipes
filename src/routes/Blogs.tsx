@@ -16,7 +16,7 @@ const Blogs = () => {
 	}, []);
 
 	return (
-		<main>
+		<main className='overflow-hidden'>
 			<SectionWrapper className='relative h-[400px] w-full text-center'>
 				<img
 					src={bgarticleimg}
@@ -34,7 +34,7 @@ const Blogs = () => {
 					</div>
 					<motion.div variants={textMotion('right')} className='w-full sm:w-1/2 md:w-[40%]'>
 						<div className='relative top-12 h-[180px] w-full overflow-hidden rounded-xl bg-white p-6 shadow-xl sm:top-24'>
-							<div className='bg-orange-500 absolute left-0 top-0 h-full w-[6px]' />
+							<div className='absolute left-0 top-0 h-full w-[6px] bg-orange' />
 							<div className='flex h-full flex-col items-start justify-center gap-4 font-space_grotesk font-semibold'>
 								<div>
 									<ul className='flex items-center gap-1'>

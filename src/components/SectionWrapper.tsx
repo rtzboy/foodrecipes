@@ -13,7 +13,7 @@ const SectionWrapper = ({ children, className }: SectionWrapperProps) => {
 			whileInView='visible'
 			variants={staggerParent(0.5, 0)}
 			viewport={{ once: true, amount: 0.25 }}
-			className={`overflow-x-hidden ${className || ''}`}
+			className={className || ''}
 		>
 			{children}
 		</motion.section>

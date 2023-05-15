@@ -57,7 +57,7 @@ const App = () => {
 					</LinkTo>
 				</div>
 			</section>
-			<SectionWrapper className='py-20'>
+			<SectionWrapper className='overflow-x-hidden py-20'>
 				<div className='mx-auto flex w-full max-w-7xl flex-col gap-6 px-4'>
 					<div className='grid gap-8 font-space_grotesk font-semibold md:grid-cols-2'>
 						<motion.div variants={textMotion('left')} className='flex flex-col gap-8'>
@@ -84,7 +84,7 @@ const App = () => {
 					</div>
 				</div>
 			</SectionWrapper>
-			<SectionWrapper className='relative'>
+			<SectionWrapper className='relative overflow-x-hidden'>
 				<div
 					className='absolute h-[50vh] w-full bg-black bg-cover bg-center bg-no-repeat'
 					style={{ backgroundImage: `url(${bgCategory})` }}
@@ -135,7 +135,7 @@ const App = () => {
 					</motion.ul>
 				</article>
 			</SectionWrapper>
-			<SectionWrapper className='mx-auto w-full max-w-7xl py-28'>
+			<SectionWrapper className='mx-auto w-full max-w-7xl overflow-x-hidden py-28'>
 				<div className='flex flex-col gap-8 font-space_grotesk'>
 					<motion.h2
 						variants={textMotion('left')}

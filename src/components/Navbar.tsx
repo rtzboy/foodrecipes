@@ -20,7 +20,7 @@ const Navbar = () => {
 	));
 
 	return (
-		<nav className='fixed top-0 z-[99] flex w-full items-center overflow-x-hidden bg-white py-5 font-space_grotesk text-lg font-semibold sm:px-7'>
+		<nav className='fixed top-0 z-[99] flex w-full items-center bg-white py-5 font-space_grotesk text-lg font-semibold sm:px-7'>
 			<div className='mx-auto flex w-full max-w-7xl justify-between px-4 sm:px-8'>
 				<LinkTo to='/' className='text-2xl font-bold md:text-3xl'>
 					<div className='flex items-center gap-1'>
