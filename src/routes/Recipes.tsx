@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dispatch, useEffect, useState } from 'react';
+import coverone from '../assets/coverone.png';
+import covertwo from '../assets/covertwo.png';
 import DynamicBg from '../components/DynamicBg';
 import Footer from '../components/Footer';
 import InputSearch from '../components/InputSearch';
@@ -14,7 +16,7 @@ import { latestRecipeCall, nextRecipeCall } from '../lib/api/recipe_api';
 import { useFoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
 import { RecipeDetailsType, RecipeReducerAction } from '../types/recipeTypes';
 
-const bgList = ['/src/assets/coverone.png', '/src/assets/covertwo.png'];
+const bgList = [coverone, covertwo];
 
 const Recipes = () => {
 	const { foodRecipes, dispatchRecipes } = useFoodRecipeContext();

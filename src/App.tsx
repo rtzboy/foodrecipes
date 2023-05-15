@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
-import xdddd from '../src/assets/whoweare.jpg';
+import { bgHome, bghome2, bghome3, bghome4 } from './assets/homeimgs/fileHomeImgs';
 import { drinks, healthy, lunch, shrimp } from './assets/popular/popularFiles';
+import bgCategory from './assets/popularcat.png';
+import whoweare from './assets/whoweare.jpg';
 import DynamicBg from './components/DynamicBg';
 import Footer from './components/Footer';
 import LinkTo from './components/LinkTo';
@@ -15,12 +17,7 @@ import { childEffectIn, staggerContainer, textMotion } from './constants/motionA
 // TODO: move to another file?
 const word_list = ['Fried', 'Baked', 'Steamed', 'Boiled'];
 
-const bgList = [
-	'/src/assets/homeimgs/bghome.png',
-	'/src/assets/homeimgs/bghome2.png',
-	'/src/assets/homeimgs/bghome3.png',
-	'/src/assets/homeimgs/bghome4.png'
-];
+const bgList = [bgHome, bghome2, bghome3, bghome4];
 
 const POP_CATEGORIES = [
 	{ id: 1, url: drinks },
@@ -82,7 +79,7 @@ const App = () => {
 							}}
 							className='relative flex items-center px-4 py-8'
 						>
-							<img src={xdddd} alt='' className='w-full rounded-xl' />
+							<img src={whoweare} alt='' className='w-full rounded-xl' />
 						</motion.div>
 					</div>
 				</div>
@@ -90,7 +87,7 @@ const App = () => {
 			<SectionWrapper className='relative'>
 				<div
 					className='absolute h-[50vh] w-full bg-black bg-cover bg-center bg-no-repeat'
-					style={{ backgroundImage: 'url("/src/assets/popularcat.png")' }}
+					style={{ backgroundImage: `url(${bgCategory})` }}
 				/>
 				<article className='relative z-50 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pt-[200px] text-center font-space_grotesk text-white'>
 					<div className='font-bold tracking-wider'>
