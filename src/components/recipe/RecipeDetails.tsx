@@ -121,7 +121,7 @@ const RecipeDetails = ({ details }: RecipeDetailsProps) => {
 						open ? 'visible opacity-100' : 'invisible opacity-0'
 					}`}
 				>
-					Did you find the perfect recipe? Go the link below{' '}
+					Did you find the perfect recipe? Go to the link above{' '}
 					<span className='underline underline-offset-2'>{details.source}</span>
 				</div>
 			</div>
