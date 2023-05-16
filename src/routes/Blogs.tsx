@@ -46,10 +46,10 @@ const Blogs = () => {
 										<li className='text-orange'>
 											<SingleArrow className='h-5' />
 										</li>
-										<li className='text-gray'>Kitches Tips</li>
+										<li className='text-gray'>Kitchen Tips</li>
 									</ul>
 								</div>
-								<div className='text-3xl'>Kitches Tips</div>
+								<div className='text-3xl'>Kitchen Tips</div>
 							</div>
 						</div>
 					</motion.div>

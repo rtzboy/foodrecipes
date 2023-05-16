@@ -39,7 +39,7 @@ const BlogDetails = () => {
 									</li>
 									<li className='text-gray'>
 										<LinkTo to='/articles' className='hover:text-orange'>
-											Kitches Tips
+											Kitchen Tips
 										</LinkTo>
 									</li>
 								</ul>
