@@ -105,7 +105,7 @@ const App = () => {
 					</motion.div>
 					<motion.ul
 						variants={staggerContainer(0.5)}
-						className='flex flex-wrap justify-evenly gap-8'
+						className='flex flex-wrap justify-evenly gap-8 overflow-hidden'
 					>
 						{POP_CATEGORIES.map(category => (
 							<motion.li

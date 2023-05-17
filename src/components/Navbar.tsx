@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import LinkTo from './LinkTo';
 import Collapse from './icons/Collapse';
 import Menu from './icons/Menu';
