@@ -4,10 +4,10 @@ import { useLocation } from 'react-router-dom';
 import AnimatedOutlet from '../components/AnimatedOutlet';
 import Navbar from '../components/Navbar';
 import { FoodRecipeContext } from '../lib/contexts/FoodRecipeContext';
-import { INITAL_FOOD_RECIPES, recipesReducer } from '../lib/reducers/recipesReducer';
+import { INITIAL_FOOD_RECIPES, recipesReducer } from '../lib/reducers/recipesReducer';
 
 const Root = () => {
-	const [foodRecipes, dispatchRecipes] = useReducer(recipesReducer, INITAL_FOOD_RECIPES);
+	const [foodRecipes, dispatchRecipes] = useReducer(recipesReducer, INITIAL_FOOD_RECIPES);
 	const location = useLocation();
 
 	return (

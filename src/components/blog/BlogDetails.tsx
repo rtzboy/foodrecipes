@@ -1,20 +1,38 @@
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ALL_ARTICLES } from '../../constants/content';
 import { staggerContainer, textMotion } from '../../constants/motionAnimations';
+import { allComments } from '../../lib/api/comments';
 import Footer from '../Footer';
 import LinkTo from '../LinkTo';
 import SectionWrapper from '../SectionWrapper';
 import SingleArrow from '../icons/SingleArrow';
+import BlogComments from './BlogComments';
+import FormComment from './FormComment';
+
+export interface ArticleComments {
+	id_user: string;
+	author: string;
+	comment: string;
+}
 
 const BlogDetails = () => {
 	const { id } = useParams();
+	const [comments, setComments] = useState<ArticleComments[]>([]);
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}, []);
 
 	const blogInfo = ALL_ARTICLES.find(blog => blog.id === id);
+
+	useEffect(() => {
+		const putDataOnComments = async () => {
+			const { success, comments, error } = await allComments(id);
+			if (success) setComments(comments);
+		};
+		putDataOnComments();
+	}, []);
 
 	return (
 		<main className='overflow-hidden'>
@@ -63,6 +81,11 @@ const BlogDetails = () => {
 						<p className='whitespace-pre-line text-justify font-inter leading-relaxed'>
 							{blogInfo?.content}
 						</p>
+						<div className='mt-6'>
+							<h2 className='font-space_grotesk text-4xl font-semibold'>Leave a comment</h2>
+							<FormComment url={id} comments={comments} setComments={setComments} />
+							<BlogComments comments={comments} />
+						</div>
 					</motion.div>
 					<div className='md:w-[40%] lg:w-[30%]'>
 						<div className='sticky top-24 h-[50vh] px-2 md:px-4'>

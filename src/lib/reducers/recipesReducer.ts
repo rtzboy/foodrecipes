@@ -1,6 +1,6 @@
 import { RecipeListInfoType, RecipeReducerAction } from '../../types/recipeTypes';
 
-export const INITAL_FOOD_RECIPES = {
+export const INITIAL_FOOD_RECIPES = {
 	error: false,
 	loading: false,
 	recipeList: undefined
