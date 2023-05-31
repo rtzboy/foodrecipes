@@ -118,7 +118,7 @@ const updateArticleComment = async (
 			setMessage('thanks for your comment');
 			serLoading(false);
 			dispatchForm({ type: 'RESET_FORM_AUTHOR' });
-			setComments([addUuidv4, ...comments]);
+			setComments([...comments, addUuidv4]);
 		}, 900);
 	}
 	if (error) {
