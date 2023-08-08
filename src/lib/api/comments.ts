@@ -1,5 +1,6 @@
 export const allComments = async (id?: string) => {
-	const response = await fetch(`https://www.jpomadev97.com/api/articles/${id}`);
+	// https://recipebacktest.onrender.com/articles/fe70b778-4b13-4b8c-8afe-7281d957e911
+	const response = await fetch(`https://recipebacktest.onrender.com/articles/${id}`);
 	try {
 		if (response.ok) {
 			const data = await response.json();
@@ -16,7 +17,7 @@ export const createComment = async (
 	urlParam?: string
 ): Promise<CreateCommentType> => {
 	try {
-		const response = await fetch(`https://www.jpomadev97.com/api/articles/${urlParam}`, {
+		const response = await fetch(`https://recipebacktest.onrender.com/articles/${urlParam}`, {
 			headers: { 'Content-Type': 'application/json' },
 			method: 'PATCH',
 			body: JSON.stringify(formCommentUser)
